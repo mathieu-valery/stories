@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :followers, through: :received_follows, source: :follower
   has_many :comments
   has_many :likes
+  has_one_attached :photo
 end
