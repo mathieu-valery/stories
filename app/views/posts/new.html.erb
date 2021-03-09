@@ -1,6 +1,6 @@
 <%= simple_form_for [ @post ] do |f| %>
     <%= f.input :caption %>
-    <%= f.input :video_url %>
+    <%= f.input :video, as: :file %>
     <%= f.submit "Send", class: "btn btn-travel-primary" %>
     <% end %>
 

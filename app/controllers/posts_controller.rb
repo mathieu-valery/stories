@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:video_url, :caption)
+        params.require(:post).permit(:video, :caption)
       end
 
 end

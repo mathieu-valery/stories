@@ -4,7 +4,14 @@
 
 <% @posts.each do |post|  %>
     <p><%= post.caption  %></p>
-    <video className="video" controls>
-        <source src='<%= post.video_url %>' type="video/mp4" />
-    </video>
+    <p><%= post.video_url  %></p>
+    <% if post.video.attached? %>
+        <%= cl_video_tag(post.video.key, :width => 300, :height => 300, 
+        :preload => "none", :controls => true,
+        :fallback_content => "Your browser does not support HTML5 video tags" ) %>
+        <!-- <video className="video" controls>
+            <source src='<%= post.video.key %>' type="video/mp4" />
+        </video> -->
+    <% end %>
 <% end %>
+
