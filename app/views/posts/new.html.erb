@@ -1,0 +1,7 @@
+<%= simple_form_for [ @post ] do |f| %>
+    <%= f.input :caption %>
+    <%= f.input :video_url %>
+    <%= f.submit "Send", class: "btn btn-travel-primary" %>
+    <% end %>
+
+<%= link_to 'Back', posts_path, class: "btn-travel-secondary mt-2" %>
