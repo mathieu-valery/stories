@@ -8,23 +8,81 @@ User.destroy_all
 puts("Done")
 
 puts("Create Users...")
-User.create(username: "Bear Grylls", email:"beargrylls@official.com", password:"helloworld")
-User.create(username: "Beyonce", email:"beyonce@official.com", password:"helloworld")
-User.create(username: "Ellon Musk", email:"ellonmusk@official.com", password:"helloworld")
+users = [
+    [
+        {
+        email: "anthonyyou@gmail.com",
+        password: '123456',
+        username: "Anthony",
+        },
+        "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1597872878/ykktauyyzddh4mkkrzd2.jpg"
+    ],
+    [
+        {
+        email: "raphaeltoubiana@gmail.com",
+        password: '123456',
+        username: "Raphael",
+        },
+        "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1598027117/lg7kzhcjqieldye3ffmg.jpg"
+    ],
+    [
+        {
+        email: "oceaneleroy@gmail.com",
+        password: '123456',
+        username: "Oceane",
+        },
+        "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1597859853/hlm3ivjlz0tezolmvyvo.jpg"
+    ]
+]
+
+users.each do |user| iterated_user = User.new(user.first)
+    file = URI.open(user.last)
+    iterated_user.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+    iterated_user.save!
+  end
+
 puts("Done")
 
 puts("Create Posts...")
-p = Post.new(user_id: User.first.id, video_url: "https://res.cloudinary.com/dg4hemebf/video/upload/v1615240176/oss-117-jaime-me-beurrer-la-biscotte_x0jutd.mp4", caption: "Rick Rolled")
-p.save!
+
+posts = [
+    [
+        {
+        user_id: User.first.id,
+        caption: "Art factory exhibition"
+        },
+        "https://res.cloudinary.com/dg4hemebf/video/upload/v1615372608/VID_20210309_155319_f2pyms.mp4"
+    ],
+    [
+        {
+        user_id: User.first.id,
+        caption: "lovely street in Paris"
+        },
+        "https://res.cloudinary.com/dg4hemebf/video/upload/v1615372626/VID_20210309_161107_awet6b.mp4"
+    ],
+    [
+        {
+        user_id: User.first.id,
+        caption: "I love les buttes chaumonts"
+        },
+        "https://res.cloudinary.com/dg4hemebf/video/upload/v1615372647/VID_20210309_170946_ujmbfy.mp4"
+    ]
+]
+
+posts.each do |post| iterated_post = Post.new(post.first)
+    file = URI.open(post.last)
+    iterated_post.video.attach(io: file, filename: 'nes.mp4', content_type: 'video/mp4')
+    iterated_post.save!
+  end
 puts("Done")
 
 puts("Create Likes...")
-l = Like.create(user_id: User.first.id, post_id: Post.first.id, is_liked: true)
+l = Like.create(user_id: User.second.id, post_id: Post.first.id, is_liked: true)
 l.save!
 puts("Done")
 
 puts("Create Comments...")
-c = Comment.create(user_id: User.first.id, post_id: Post.first.id, text: "Lol you got me")
+c = Comment.create(user_id: User.second.id, post_id: Post.first.id, text: "Nice !")
 c.save!
 puts("Done")
 

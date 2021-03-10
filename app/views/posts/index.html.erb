@@ -3,10 +3,10 @@
 <% end %>
 
 <% @posts.each do |post|  %>
-    <p><%= post.caption  %></p>
-    <p><%= post.video_url  %></p>
+    <p><strong><%= post.caption  %></strong></p>
+    <p><em>Posted by <%= post.user.username %> at <%= post.created_at%></em></p>
     <% if post.video.attached? %>
-        <%= cl_video_tag(post.video.key, :width => 300, :height => 300, 
+        <%= cl_video_tag(post.video.key, :width => 270, :height => 480, 
         :preload => "none", :controls => true,
         :fallback_content => "Your browser does not support HTML5 video tags" ) %>
     <% end %>
