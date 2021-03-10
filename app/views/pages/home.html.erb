@@ -1,9 +1,0 @@
-<h1>Pages#home</h1>
-
-<% @posts.each do |post|  %>
-    <p><%= post.caption  %></p>
-    <p><%= post.video_url %></p>
-    <video className="video" controls>
-        <source src='<%= post.video_url %>' type="video/mp4" />
-    </video>
-<% end %>

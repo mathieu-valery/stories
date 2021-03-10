@@ -1,10 +1,10 @@
-class PostsController < ApplicationController
+class Api::V1::PostsController < ActionController::Base
     def index
-        @posts = Post.all
-    end
-
-    def new
-        @post = Post.new
+        posts = Post.all
+        
+        render json: posts.map { |post|
+            post.as_json.merge({ video: url_for(post.video) })
+          }
     end
 
     def create
