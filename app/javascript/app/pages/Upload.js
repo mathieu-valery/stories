@@ -1,0 +1,13 @@
+import React, { useState } from 'react'
+
+// import faker from "faker"
+
+function Upload() {
+  return (
+    <div>
+        <h1>Upload</h1>
+    </div>
+  );
+}
+
+export default Upload;
