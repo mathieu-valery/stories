@@ -1,10 +1,8 @@
-class Api::V1::PostsController < ActionController::Base
+class Api::V1::PostsController < ApplicationController
     def index
         posts = Post.all
         
-        render json: posts.map { |post|
-            post.as_json.merge({ video: url_for(post.video) })
-          }
+        render json: posts, each_serializer: PostSerializer
     end
 
     def create
@@ -26,3 +24,6 @@ class Api::V1::PostsController < ActionController::Base
     end
 
 end
+    #     render json: posts.map { |post|
+    #         post.as_json.merge({ video: post.video.key })
+    #       }

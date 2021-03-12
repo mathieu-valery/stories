@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   resources :posts
   root to: 'posts#index'
 
-  get '/posts', to: 'pages#home'
+  get '/posts', to: 'posts#index'
   
   #API
   namespace :api, defaults: {format: :json } do
     namespace :v1 do
       resources :posts, only: [:index, :create]
+      resources :comments, only: [:index, :create]
+      resources :likes, only: [:index, :update]
     end
   end
   

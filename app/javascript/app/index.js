@@ -1,22 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home'
 import Upload from './pages/Upload'
 
 
-
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Switch>
-        <Route path="/upload" component={Upload}/>
         <Route path="/" component={Home}/>
+        <Route path="/upload" component={Upload}/>
+
         
         
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
