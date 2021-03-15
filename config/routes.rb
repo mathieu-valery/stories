@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   get '/posts', to: 'posts#index'
+
+  mount ActionCable.server => '/cable'
   
   #API
   namespace :api, defaults: {format: :json } do
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
       resources :posts, only: [:index, :create]
       resources :comments, only: [:index, :show]
       post 'comments/(:id)', to: 'comments#create'
+      
+
       # resources :likes, only: [:index, :update]
     end
   end

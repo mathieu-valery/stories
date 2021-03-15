@@ -8,6 +8,8 @@ class Api::V1::CommentsController < ActionController::Base
     def create
         post = Post.find(params[:id])
         comment = Comment.create(text: params[:body], post_id: post.id, user_id: current_user.id)
+        ActionCable.server.broadcast 'comments_channel', comment
+        head :ok
     end
 
     def show
