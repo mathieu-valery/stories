@@ -15,11 +15,11 @@ class CommentForm extends Component {
 
     handleSubmit(event) {
         const base_url = '/api/v1'
-        const url = `${base_url}/comments/${this.props.id}`; //not really working => it is posting on api/v1/comments instead
+        const url = `${base_url}/comments/${this.props.id}`;
         event.preventDefault();
         axios.post(url, {body: this.state.value})
-        .then(response => {
-            console.log(response.data)
+        .then(() => {
+            this.setState({value: ''})
         })
         .catch(error => {
             console.log("ERRRR:: ",error.response.data);
