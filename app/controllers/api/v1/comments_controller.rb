@@ -1,26 +1,23 @@
 class Api::V1::CommentsController < ActionController::Base
+    skip_before_action :verify_authenticity_token
     def index
         comments = Comment.all
         
         render json: comments
     end
 
-    # def create
-    #     @comment = Post.new(post_params)
-    #     @post.user = current_user
+    def create
+        
+        post = Post.find(params[:id])
+        comment = Comment.create(text: params[:body], post_id: post.id, user_id: current_user.id)
+        
+        posts = Post.all
+        
+        render json: posts, each_serializer: PostSerializer
+    end
 
-    #     if @post.save
-    #         redirect_to posts_path
-    #     else
-    #         flash[:alert] = "Something went wrong."
-    #         render :new
-    #     end
-    # end
+    
 
-    # private
 
-    # def post_params
-    #     params.require(:post).permit(:video, :caption)
-    # end
 
 end

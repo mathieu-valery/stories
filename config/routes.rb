@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :posts
+  
   root to: 'posts#index'
 
   get '/posts', to: 'posts#index'
@@ -11,7 +12,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :posts, only: [:index, :create]
       resources :comments, only: [:index, :create]
-      resources :likes, only: [:index, :update]
+      post 'comments/(:id)', to: 'comments#create'
+      # resources :likes, only: [:index, :update]
     end
   end
   
