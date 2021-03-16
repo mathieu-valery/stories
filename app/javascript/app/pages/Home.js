@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react'
 import FollowersColumn from '../components/FollowersColumn'
-import Card from '../components/Card'
+import PostCard from '../components/PostCard'
 
 
 function Home() {
@@ -19,7 +19,7 @@ function Home() {
         <FollowersColumn/>
         <div className='feed'>
           {posts.map(post => (
-            <Card post={post} key={post.id}/>
+            <PostCard post={post} key={post.id}/>
           ))}
         </div>
         <div className='suggested-box'></div>
