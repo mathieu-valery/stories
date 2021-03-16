@@ -12,12 +12,11 @@ Rails.application.routes.draw do
   #API
   namespace :api, defaults: {format: :json } do
     namespace :v1 do
-      resources :posts, only: [:index, :create]
+      resources :posts, only: [:index]
       resources :comments, only: [:index, :show]
       post 'comments/(:id)', to: 'comments#create'
-      
-
-      # resources :likes, only: [:index, :update]
+      resources :likes, only: [:index]
+      post 'likes/(:id)', to: 'likes#like_post'
     end
   end
   

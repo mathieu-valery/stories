@@ -22,7 +22,6 @@ class Comments extends Component {
     }
 
     fetchComments = () => {
-        console.log('fetch comments..')
         const url = `${BASE_URL}/comments/`
         axios.get(url)
         .then(response => {

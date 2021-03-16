@@ -12,9 +12,6 @@ function App() {
       <Switch>
         <Route path="/" component={Home}/>
         <Route path="/upload" component={Upload}/>
-
-        
-        
       </Switch>
     </BrowserRouter>
   );
