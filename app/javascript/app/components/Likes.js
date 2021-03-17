@@ -54,10 +54,10 @@ class Likes extends Component {
         if (Object.keys(user_logged).length > 0) { //check if state is not empty
             console.log(this.state.user_logged.likes )
             if (this.state.user_logged.likes.filter(like => like.post.id == this.props.id)[0].is_liked ) { //check if the user logged has a like set to true for this post
-                document.getElementById(`button ${this.props.id}`).classList.add('background-blue')
+                document.getElementById(`button ${this.props.id}`).classList.add('blue')
                 
             } else {
-                document.getElementById(`button ${this.props.id}`).classList.remove('background-blue')
+                document.getElementById(`button ${this.props.id}`).classList.remove('blue')
             }
         }  
     }
@@ -69,9 +69,10 @@ class Likes extends Component {
     render() {
         return(
             
-            <div className="likes">
-                <p>Likes : {this.state.likes.filter(like => like.is_liked).length}</p>
-                <button id={`button ${this.props.id}`} onClick={this.handleClick}>Like</button>
+            <div className="likes-section">
+                <i id={`button ${this.props.id}`} onClick={this.handleClick} className="fas fa-thumbs-up like-icon"></i>
+                <p>({this.state.likes.filter(like => like.is_liked).length})</p>
+                
             </div>
         )
     }

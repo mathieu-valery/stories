@@ -38,7 +38,6 @@ class Comments extends Component {
         .then(() => {
             this.setState({value: ''})
             this.fetchComments();
-            this.displayComments();
         })
         .catch(error => {
             console.log("ERRRR:: ",error.response.data);
@@ -58,13 +57,16 @@ class Comments extends Component {
     render() {
  
         return(
-            <div className="comments_section">
-                <p onClick={this.displayComments} className="comments_count">Comments: {this.state.comments.length}</p>
-                    <div id={this.props.id} className='comments hidden'>
-                    {this.state.comments.map(comment => {
-                        return <p key={comment.id}><strong>{comment.text} posted by {comment.user.username}</strong></p>
-                    })}
-                    </div>
+            <div className="bottom-card">
+                <div className="comments-section">
+                    <i onClick={this.displayComments} className="fas fa-comments comment-icon"></i>
+                    <p className="comments_count">({this.state.comments.length})</p>
+                </div>
+                <div id={this.props.id} className='comments hidden'>
+                        {this.state.comments.map(comment => {
+                            return <p key={comment.id}><strong>{comment.text} posted by {comment.user.username}</strong></p>
+                        })}
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <input type='text' value={this.state.value} onChange={this.handleChange}></input>
                     <button type='submit'>Send</button>  
