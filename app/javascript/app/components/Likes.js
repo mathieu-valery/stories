@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {Component} from 'react'
 import { ActionCable } from 'actioncable';
-import LikeIccon from './LikeIccon.js'
+
 
 const BASE_URL = '/api/v1'
 
@@ -23,6 +23,7 @@ class Likes extends Component {
         .then(() => {  
             this.fetchLikes();
             this.fetchUserLogged();
+            
         })
         .catch(error => {
             console.log("ERRRR:: ",error.response.data);
@@ -47,14 +48,30 @@ class Likes extends Component {
         .catch(error => console.log("Error while fetching data : " + error));
     }
 
+    changeButtonColor = () => {
+        let user_logged = this.state.user_logged
+
+        if (Object.keys(user_logged).length > 0) { //check if state is not empty
+            console.log(this.state.user_logged.likes )
+            if (this.state.user_logged.likes.filter(like => like.post.id == this.props.id)[0].is_liked ) { //check if the user logged has a like set to true for this post
+                document.getElementById(`button ${this.props.id}`).classList.add('background-blue')
+                
+            } else {
+                document.getElementById(`button ${this.props.id}`).classList.remove('background-blue')
+            }
+        }  
+    }
+
+    componentWillUpdate() {
+        this.changeButtonColor();
+    }
+
     render() {
-        
         return(
             
             <div className="likes">
                 <p>Likes : {this.state.likes.filter(like => like.is_liked).length}</p>
-                <button onClick={this.handleClick}>Like</button>
-                <LikeIccon user_logged={this.state.user_logged} post_id={this.props.id}/>
+                <button id={`button ${this.props.id}`} onClick={this.handleClick}>Like</button>
             </div>
         )
     }
