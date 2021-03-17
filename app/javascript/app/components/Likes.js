@@ -17,7 +17,7 @@ class Likes extends Component {
     }
 
     handleClick = () => {
-        const url = `${BASE_URL}/likes/${this.props.id}`;
+        const url = `${BASE_URL}/likes/${this.props.post_id}`;
         
         axios.post(url)
         .then(() => {  
@@ -34,7 +34,7 @@ class Likes extends Component {
         const url = `${BASE_URL}/likes/`
         axios.get(url)
         .then(response => {
-            this.setState({likes: response.data.filter(like => like.post.id == this.props.id)})    
+            this.setState({likes: response.data.filter(like => like.post.id == this.props.post_id)})    
         })
         .catch(error => console.log("Error while fetching data : " + error));
     }
@@ -53,11 +53,11 @@ class Likes extends Component {
 
         if (Object.keys(user_logged).length > 0) { //check if state is not empty
             console.log(this.state.user_logged.likes )
-            if (this.state.user_logged.likes.filter(like => like.post.id == this.props.id)[0].is_liked ) { //check if the user logged has a like set to true for this post
-                document.getElementById(`button ${this.props.id}`).classList.add('blue')
+            if (this.state.user_logged.likes.filter(like => like.post.id == this.props.post_id)[0].is_liked ) { //check if the user logged has a like set to true for this post
+                document.getElementById(`button ${this.props.post_id}`).classList.add('blue')
                 
             } else {
-                document.getElementById(`button ${this.props.id}`).classList.remove('blue')
+                document.getElementById(`button ${this.props.post_id}`).classList.remove('blue')
             }
         }  
     }
@@ -70,7 +70,7 @@ class Likes extends Component {
         return(
             
             <div className="likes-section">
-                <i id={`button ${this.props.id}`} onClick={this.handleClick} className="fas fa-thumbs-up like-icon"></i>
+                <i id={`button ${this.props.post_id}`} onClick={this.handleClick} className="fas fa-thumbs-up like-icon"></i>
                 <p>({this.state.likes.filter(like => like.is_liked).length})</p>
                 
             </div>

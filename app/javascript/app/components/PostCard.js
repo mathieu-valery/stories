@@ -12,8 +12,8 @@ function PostCard({post}) {
             <p><em>Posted by {post.user.username} at {post.created_at}</em></p>
             <Video cloudName="dg4hemebf" publicId={post.video_key} controls={true} quality="auto" fetchFormat="auto" />
 
-            <Likes id={post.id}/>
-            <Comments id={post.id}/>
+            <Likes post_id={post.id}/>
+            <Comments post_id={post.id}/>
       </div>
     );
   }

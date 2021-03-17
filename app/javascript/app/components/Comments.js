@@ -25,14 +25,14 @@ class Comments extends Component {
         const url = `${BASE_URL}/comments/`
         axios.get(url)
         .then(response => {
-            this.setState({comments: response.data.filter(comment => comment.post.id == this.props.id)})    
+            this.setState({comments: response.data.filter(comment => comment.post.id == this.props.post_id)})    
         })
         .catch(error => console.log("Error while fetching data : " + error));
     }
 
     handleSubmit(event) {
         
-        const url = `${BASE_URL}/comments/${this.props.id}`;
+        const url = `${BASE_URL}/comments/${this.props.post_id}`;
         event.preventDefault();
         axios.post(url, {body: this.state.value})
         .then(() => {
@@ -45,7 +45,7 @@ class Comments extends Component {
     }
 
     displayComments = () => {
-        const comments = document.getElementById(this.props.id)
+        const comments = document.getElementById(this.props.post_id)
       
         if (comments.classList.contains('hidden')) {
           comments.classList.remove('hidden')
@@ -62,7 +62,7 @@ class Comments extends Component {
                     <i onClick={this.displayComments} className="fas fa-comments comment-icon"></i>
                     <p className="comments_count">({this.state.comments.length})</p>
                 </div>
-                <div id={this.props.id} className='comments hidden'>
+                <div id={this.props.post_id} className='comments hidden'>
                         {this.state.comments.map(comment => {
                             return <p key={comment.id}><strong>{comment.text} posted by {comment.user.username}</strong></p>
                         })}
