@@ -38,6 +38,7 @@ class Comments extends Component {
         .then(() => {
             this.setState({value: ''})
             this.fetchComments();
+            this.displayComments();
         })
         .catch(error => {
             console.log("ERRRR:: ",error.response.data);

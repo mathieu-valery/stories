@@ -17,7 +17,8 @@ Rails.application.routes.draw do
       post 'comments/(:id)', to: 'comments#create'
       resources :likes, only: [:index]
       post 'likes/(:id)', to: 'likes#like_post'
+      resources :users, only: [:index]
+      get '/user_logged', to: 'users#user_logged'
     end
   end
-  
 end
