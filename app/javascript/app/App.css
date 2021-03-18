@@ -25,3 +25,7 @@
   width: 400px;
   height: 400px;
 }
+
+.icons {
+  display: flex
+}

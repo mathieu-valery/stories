@@ -1,19 +1,23 @@
 import React from 'react'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-import Comments from './Comments';
+import Comments from '../containers/Comments';
+import CommentsIcon from '../containers/CommentsIcon';
 import Likes from './Likes';
 
 function PostCard({post}) {
 
     return (
       <div className='card'>
-            <p className="card-header"><strong>{post.caption}</strong></p>
-            <Image className="avatar" cloudName="dg4hemebf" publicId={post.user.photo_key} width="50" crop="scale" />
-            <p><em>Posted by {post.user.username} at {post.created_at}</em></p>
-            <Video cloudName="dg4hemebf" publicId={post.video_key} controls={true} quality="auto" fetchFormat="auto" />
+        <p className="card-header"><strong>{post.caption}</strong></p>
+        <Image className="avatar" cloudName="dg4hemebf" publicId={post.user.photo_key} width="50" crop="scale" />
+        <p><em>Posted by {post.user.username} at {post.created_at}</em></p>
+        <Video cloudName="dg4hemebf" publicId={post.video_key} controls={true} quality="auto" fetchFormat="auto" />
 
-            <Likes post_id={post.id}/>
-            <Comments post_id={post.id}/>
+        <div className="icons">
+          <Likes post_id={post.id}/>
+          <CommentsIcon post_id={post.id}/>
+        </div>
+        <Comments post_id={post.id}/>
       </div>
     );
   }
