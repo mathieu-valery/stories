@@ -22,15 +22,13 @@ class Comments extends Component {
         event.preventDefault();
         this.props.postComment(this.state.text, this.props.post_id)
         this.setState({text: ''})
+        this.displayHiddenComments();
     }
 
-    displayComments = () => {
+    displayHiddenComments = () => {
         const comments = document.getElementById(this.props.post_id)
-      
         if (comments.classList.contains('hidden')) {
           comments.classList.remove('hidden')
-        } else {
-          comments.classList.add('hidden')
         }
       }
 
