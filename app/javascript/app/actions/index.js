@@ -2,7 +2,10 @@ import axios from 'axios';
 const BASE_URL = '/api/v1';
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
+export const FETCH_LIKES = 'FETCH_LIKES'
+export const FETCH_USER_LOGGED = 'FETCH_USER_LOGGED'
 export const POST_COMMENT = 'POST_COMMENT'
+export const POST_LIKED = 'POST_LIKED'
 
 export function fetchPosts() {
   const promise = axios.get(`${BASE_URL}/posts`)
@@ -24,6 +27,28 @@ export function fetchComments() {
     };
   }
 
+  export function fetchLikes() {
+    const promise = axios.get(`${BASE_URL}/likes`)
+      .then(response => response.data)
+      .catch(error => console.log("Error while fetching data : " + error))
+    return {
+      type: 'FETCH_LIKES',
+      payload: promise // Will be resolved by redux-promise
+    };
+  }
+
+  export function fetchUserLogged() {
+    const url = `${BASE_URL}/user_logged/`
+    const promise = axios.get(url)
+    .then(response => response.data)
+    .catch(error => console.log("Error while fetching data : " + error));
+    return {
+      type: 'FETCH_USER_LOGGED',
+      payload: promise // Will be resolved by redux-promise
+    };
+  }
+
+
   export function postComment(text, post_id) {
 
     const url = `${BASE_URL}/comments/${post_id}`;
@@ -37,20 +62,21 @@ export function fetchComments() {
     };
   }
 
+  export function LikeThisPost(post_id) {
+
+    const url = `${BASE_URL}/likes/${post_id}`;
+    const promise = axios.post(url)
+    .then(() => axios.get(`${BASE_URL}/likes`)) //fetch likes
+    .then(response => response.data) 
+    .catch(error => console.log("Error while fetching data : " + error))
+    return {
+      type: 'POST_LIKED',
+      payload: promise // Will be resolved by redux-promise
+    };
+  }
 
 
 
 
-// export function selectChannel() {
-//   return {
-//     type: 'CHANNEL_SELECTED'
-//   }
-// }
 
-// export function appendMessage(message) {
-//   return {
-//     type: 'MESSAGE_POSTED',
-//     payload: message
-//   }
-// }
-  
+

@@ -2,7 +2,7 @@ import React from 'react'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import Comments from '../containers/Comments';
 import CommentsIcon from '../containers/CommentsIcon';
-import Likes from './Likes';
+import LikesIcon from '../containers/LikesIcon';
 
 function PostCard({post}) {
 
@@ -14,7 +14,7 @@ function PostCard({post}) {
         <Video cloudName="dg4hemebf" publicId={post.video_key} controls={true} quality="auto" fetchFormat="auto" />
 
         <div className="icons">
-          <Likes post_id={post.id}/>
+          <LikesIcon post_id={post.id}/>
           <CommentsIcon post_id={post.id}/>
         </div>
         <Comments post_id={post.id}/>

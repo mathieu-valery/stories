@@ -15,13 +15,15 @@ import './App.css'
 // State and reducers
 import postsReducer from './reducers/posts_reducer'
 import commentsReducer from './reducers/comments_reducer'
+import likesReducer from './reducers/likes_reducer'
+import userLoggedReducer from './reducers/userLogged_reducer'
 
 const initialState = {
   // users: [],
   posts: [],
   comments: [],
-  // likes: [],
-  // user_logged: {}
+  likes: [],
+  user_logged: {}
 };
 
 const middlewares = applyMiddleware(logger, ReduxPromise);
@@ -30,8 +32,8 @@ const reducers = combineReducers({
   // users: usersReducer,
   posts: postsReducer,
   comments: commentsReducer,
-  // likes: likesReducer,
-  // user_logged: usersReducer
+  likes: likesReducer,
+  user_logged: userLoggedReducer
 });
 
 function App() {

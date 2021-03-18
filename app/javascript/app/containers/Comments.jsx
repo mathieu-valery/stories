@@ -21,6 +21,7 @@ class Comments extends Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.postComment(this.state.text, this.props.post_id)
+        this.setState({text: ''})
     }
 
     displayComments = () => {

@@ -5,10 +5,6 @@ export default function postsReducer(state = null, action) {
     case FETCH_POSTS: {
       return action.payload;
     }
-
-    // case CHANNEL_SELECTED: {
-    //   return []; // Channel has changed. Clearing view.
-    // }
     default:
       return state;
   }
