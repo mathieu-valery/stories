@@ -16,8 +16,6 @@ class LikesIcon extends Component {
     }
 
     render() {
-        console.log('THE PROPS ARE')
-        console.log(this.props.likes)
         let filtered_likes = this.props.likes.filter(like => like.post.id == this.props.post_id)
         let classNameIcon = `fas fa-thumbs-up like-icon ${this.props.className}`
         return(
