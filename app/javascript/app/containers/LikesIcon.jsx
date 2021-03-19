@@ -16,7 +16,6 @@ class LikesIcon extends Component {
 
     handleClick = async () => {
         await this.props.LikeThisPost(this.props.post_id)
-        console.log('ok')
         
     }
 

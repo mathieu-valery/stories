@@ -8,8 +8,6 @@ export default function userLoggedReducer(state = null, action) {
     // NEED TO FIND A WAY TO UPDATE REDUX STATE WHEN POST_LIKED ACTION IS FIRED (set User logged.likes.post_id.isliked)
 
     case POST_LIKED: {
-      console.log('in user logged reducer')
-      console.log(action.payload.data.user)
       let updated_user = action.payload.data.user
         return {...state, ...updated_user};
       }
