@@ -5,7 +5,7 @@ import CommentsIcon from '../containers/CommentsIcon';
 import LikesIcon from '../containers/LikesIcon';
 
 function PostCard({post}) {
-
+    
     return (
       <div className='card'>
         <p className="card-header"><strong>{post.caption}</strong></p>

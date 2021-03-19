@@ -62,13 +62,10 @@ export function fetchComments() {
     };
   }
 
-  export function LikeThisPost(post_id) {
+  export async function LikeThisPost(post_id) {
 
     const url = `${BASE_URL}/likes/${post_id}`;
-    const promise = axios.post(url)
-    .then(() => axios.get(`${BASE_URL}/likes`)) //fetch likes
-    .then(response => response.data) 
-    .catch(error => console.log("Error while fetching data : " + error))
+    const promise = await axios.post(url)
     return {
       type: 'POST_LIKED',
       payload: promise // Will be resolved by redux-promise

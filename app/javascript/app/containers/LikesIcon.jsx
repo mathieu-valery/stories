@@ -14,8 +14,10 @@ class LikesIcon extends Component {
         this.changeButtonColor();
     }
 
-    handleClick = () => {
-        this.props.LikeThisPost(this.props.post_id).then(() => this.props.fetchUserLogged(this.props.post_id)) //un peu sale =(
+    handleClick = async () => {
+        await this.props.LikeThisPost(this.props.post_id)
+        console.log('ok')
+        
     }
 
     componentDidUpdate() {
@@ -25,7 +27,7 @@ class LikesIcon extends Component {
     changeButtonColor = () => {
         let user_logged = this.props.user_logged
         if (Object.keys(user_logged).length > 0) { //check if state is not empty
-            if (user_logged.likes.filter(like => like.post.id == this.props.post_id)[0].is_liked ) { //check if the user logged has a like set to true for this post
+            if (this.props.user_logged.likes.filter(like => like.post.id == this.props.post_id)[0].is_liked ) { //check if the user logged has a like set to true for this post
                 document.getElementById(`button ${this.props.post_id}`).classList.add('blue')
                 
             } else {
@@ -36,7 +38,7 @@ class LikesIcon extends Component {
 
     render() {
         let filtered_likes = this.props.likes.filter(like => like.post.id == this.props.post_id)
- 
+
         return(
             
             <div className="likes-section">
