@@ -10,38 +10,20 @@ class LikesIcon extends Component {
         super(props);
     }
 
-    componentDidMount() {
-        this.changeButtonColor();
-    }
-
     handleClick = async () => {
         await this.props.LikeThisPost(this.props.post_id)
         
     }
 
-    componentDidUpdate() {
-        this.changeButtonColor(); 
-    }
-
-    changeButtonColor = () => {
-        let user_logged = this.props.user_logged
-        if (Object.keys(user_logged).length > 0) { //check if state is not empty
-            if (this.props.user_logged.likes.filter(like => like.post.id == this.props.post_id)[0].is_liked ) { //check if the user logged has a like set to true for this post
-                document.getElementById(`button ${this.props.post_id}`).classList.add('blue')
-                
-            } else {
-                document.getElementById(`button ${this.props.post_id}`).classList.remove('blue')
-            }
-        }  
-    }
-
     render() {
+        console.log('THE PROPS ARE')
+        console.log(this.props.likes)
         let filtered_likes = this.props.likes.filter(like => like.post.id == this.props.post_id)
-
+        let classNameIcon = `fas fa-thumbs-up like-icon ${this.props.className}`
         return(
             
-            <div className="likes-section">
-                <i id={`button ${this.props.post_id}`} onClick={this.handleClick} className="fas fa-thumbs-up like-icon"></i>
+            <div className='likes-section'>
+                <i id={`button ${this.props.post_id}`} onClick={this.handleClick} className={classNameIcon}></i>
                 <p>({filtered_likes.filter(like => like.is_liked).length})</p>
                 
             </div>

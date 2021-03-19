@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react'
 import FollowersColumn from '../components/FollowersColumn'
-import PostCard from '../components/PostCard'
+import PostCard from './PostCard'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged } from '../actions/index';

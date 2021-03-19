@@ -13,16 +13,21 @@ class Api::V1::LikesController < ActionController::Base
         
 
         if new_like.save
-            puts ('saved')
+        # response to post request when user like a post. it needs this special syntax to serialize multiple objects            
+            render json: { 
+                user: UserSerializer.new(current_user).as_json,
+                like: LikeSerializer.new(new_like).as_json,
+            }
         else
             like.is_liked ? like.update(is_liked: false) : like.update(is_liked: true)
+                    # response to post request when user like a post. it needs this special syntax to serialize multiple objects
+            render json: { 
+                user: UserSerializer.new(current_user).as_json,
+                like: LikeSerializer.new(like).as_json,
+            }
         end
 
-        # response to post request when user like a post. it needs this special syntax to serialize multiple objects
-        render json: { 
-            user: UserSerializer.new(current_user).as_json,
-            like: LikeSerializer.new(like).as_json,
-        }
+
         
     end
 end

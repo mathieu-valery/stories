@@ -9,7 +9,7 @@ export default function likesReducer(state = null, action) {
       //if a new like is created
       let new_like = action.payload.data.like
       if (new_like.id > state.length) {
-        return [...state, {new_like}]
+        return [...state, new_like]
       }
       //if like is updated
       return state.map(like => {
