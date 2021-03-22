@@ -6,6 +6,7 @@ export default function userLoggedReducer(state = null, action) {
       return action.payload;
     }
     case POST_LIKED: {
+      //update user_logged
       let updated_user = action.payload.data.user
         return {...state, ...updated_user};
       }
