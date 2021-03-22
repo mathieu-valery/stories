@@ -26,6 +26,10 @@
   height: 400px;
 }
 
-.icons {
+.flex {
   display: flex
+}
+
+.follow-button {
+  margin-left: 10px;
 }

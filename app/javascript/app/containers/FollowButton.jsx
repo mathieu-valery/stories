@@ -21,7 +21,7 @@ class FollowButton extends Component {
       
         return(
                 <div className="follow-button">
-                    <button onClick={this.handleClick} className={this.props.className}>Follow</button>
+                    <button type="button" onClick={this.handleClick} className={this.props.className}>{this.props.text}</button>
                 </div>
         )
     }
