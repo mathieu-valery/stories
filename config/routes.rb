@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index]
       get '/user_logged', to: 'users#user_logged'
       resources :follows, only: [:index]
+      post 'follows/(:id)', to: 'follows#follow_user'
     end
   end
 end
