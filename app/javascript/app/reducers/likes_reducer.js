@@ -8,7 +8,7 @@ export default function likesReducer(state = null, action) {
     case POST_LIKED: {
       //if a new like is created
       let new_like = action.payload.data.like
-      if (new_like.id > state.length) {
+      if (!state.some((like => like.id === new_like.id))) {
         return [...state, new_like]
       }
       //if like is updated
