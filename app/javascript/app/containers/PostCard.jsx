@@ -4,6 +4,7 @@ import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 import Comments from './Comments';
 import CommentsIcon from './CommentsIcon';
 import LikesIcon from './LikesIcon';
+import FollowButton from './FollowButton';
 
 class PostCard extends Component {
 
@@ -23,6 +24,7 @@ class PostCard extends Component {
         <div className='card'>
           <p className="card-header"><strong>{this.props.post.caption}</strong></p>
           <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.post.user.photo_key} width="50" crop="scale" />
+          <FollowButton/>
           <p><em>Posted by {this.props.post.user.username} at {this.props.post.created_at}</em></p>
           <Video cloudName="dg4hemebf" publicId={this.props.post.video_key} controls={true} quality="auto" fetchFormat="auto" />
 
