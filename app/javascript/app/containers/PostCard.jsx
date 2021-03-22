@@ -18,13 +18,24 @@ class PostCard extends Component {
         } else {
           icconColor = 'black'
         }
-      }  
-
+      }
+      
+      let follows_of_current_user = this.props.follows.filter(follow => follow.follower.id === this.props.user_logged.id)
+      let buttonColor
+      let follow_of_current_user_for_this_post_user = follows_of_current_user.filter(follow => follow.followed_user.id === this.props.post.user.id)[0]
+      if (follow_of_current_user_for_this_post_user && follow_of_current_user_for_this_post_user.is_followed) {
+        //user logged follow post user
+        buttonColor = 'blue'
+      } else {
+        //user logged don't follow post user
+        buttonColor = 'grey'
+      }
+      
       return (
         <div className='card'>
           <p className="card-header"><strong>{this.props.post.caption}</strong></p>
           <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.post.user.photo_key} width="50" crop="scale" />
-          <FollowButton/>
+          <FollowButton user_id={this.props.post.user.id} className={buttonColor}/>
           <p><em>Posted by {this.props.post.user.username} at {this.props.post.created_at}</em></p>
           <Video cloudName="dg4hemebf" publicId={this.props.post.video_key} controls={true} quality="auto" fetchFormat="auto" />
 
@@ -40,7 +51,8 @@ class PostCard extends Component {
 
 function mapStateToProps(state) {
   return {
-   user_logged: state.user_logged
+   user_logged: state.user_logged,
+   follows: state.follows
   };
 }  
 export default connect(mapStateToProps)(PostCard);
