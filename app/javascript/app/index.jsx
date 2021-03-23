@@ -18,9 +18,10 @@ import commentsReducer from './reducers/comments_reducer'
 import likesReducer from './reducers/likes_reducer'
 import userLoggedReducer from './reducers/userLogged_reducer'
 import followsReducer from './reducers/follows_reducer'
+import usersReducer from './reducers/users_reducer'
 
 const initialState = {
-  // users: [],
+  users: [],
   posts: [],
   comments: [],
   likes: [],
@@ -31,7 +32,7 @@ const initialState = {
 const middlewares = applyMiddleware(logger, ReduxPromise);
 
 const reducers = combineReducers({
-  // users: usersReducer,
+  users: usersReducer,
   posts: postsReducer,
   comments: commentsReducer,
   likes: likesReducer,

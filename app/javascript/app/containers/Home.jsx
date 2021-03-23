@@ -3,7 +3,7 @@ import FollowersColumn from '../components/FollowersColumn'
 import PostCard from './PostCard'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows } from '../actions/index';
+import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers } from '../actions/index';
 
 class Home extends Component {
   componentDidMount() {
@@ -12,6 +12,7 @@ class Home extends Component {
     this.props.fetchLikes();
     this.props.fetchUserLogged();
     this.props.fetchFollows();
+    this.props.fetchUsers();
   }
 
   render() {
@@ -36,7 +37,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows }, dispatch);
+  return bindActionCreators({ fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
