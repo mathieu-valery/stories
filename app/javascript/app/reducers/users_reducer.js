@@ -30,8 +30,9 @@ export default function usersReducer(state = null, action) {
         }) 
       }
       case USER_FOLLOWED: {
-        return action.payload.data.users
-      }  
+        if (action.payload.data.users) {
+        return action.payload.data.users }
+      }   
     default:
         return state;
     }

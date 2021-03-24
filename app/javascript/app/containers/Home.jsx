@@ -34,7 +34,7 @@ class Home extends Component {
     let followed;
     let followed_users;
     let non_followed_users;
-
+    let sorted_users;
     if (this.props.users.length > 0 && Object.keys(user_logged).length > 0) {
 
       followers = user_logged.received_follows.filter((received_follow) => received_follow.is_followed === true).map(received_follow => received_follow.follower)
@@ -42,38 +42,24 @@ class Home extends Component {
       non_followers_users = this.props.users.filter(user => !followers_users.includes(user) && user.id !== user_logged.id )
 
       followed = user_logged.follows.filter((follow) => follow.is_followed === true).map(follow => follow.followed_user)
-      console.log(followed)
+
       followed_users = this.props.users.filter(user => {if(followed.some(followed => followed.id==user.id)) return user})
-      console.log(followed_users)
+
       non_followed_users = this.props.users.filter(user => !followed_users.includes(user) && user.id !== user_logged.id )
-      console.log(this.props.users)
-      console.log(non_followed_users)
+
+      sorted_users = followers_users.sort((a,b) => a.likes< b.likes ? 1 : -1) 
+      console.log(sorted_users)
     }
-
-    const renderMiniCards = () => {
-      if (followed_users) {
-        return followed_users.map(user => (
-          <MiniCard key={user.id} user={user}/>
-        ))
-      } else return
-    }
-
-    // const renderUserCards = () => {
-    //   if (non_followed_users) {
-    //     return non_followed_users.map(user => (
-    //       <UserCard key={user.id} user={user}/>
-    //     ))
-    //   } else return
-    // }
-
-
 
 
     return (
       <div className="container">
         <div className='your-follows'>
           <h1>Your Follows</h1>
-          {renderMiniCards()}
+          {followed_users && 
+          followed_users.map(user => (
+            <MiniCard key={user.id} user={user}/>))
+            }
         </div>
         <div className='feed'>
           {this.props.posts.map(post => (
