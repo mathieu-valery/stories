@@ -21,6 +21,7 @@ class Home extends Component {
     this.props.fetchUserLogged();
     this.props.fetchFollows();
     this.props.fetchUsers();
+
   }
 
 
@@ -41,8 +42,12 @@ class Home extends Component {
       non_followers_users = this.props.users.filter(user => !followers_users.includes(user) && user.id !== user_logged.id )
 
       followed = user_logged.follows.filter((follow) => follow.is_followed === true).map(follow => follow.followed_user)
+      console.log(followed)
       followed_users = this.props.users.filter(user => {if(followed.some(followed => followed.id==user.id)) return user})
+      console.log(followed_users)
       non_followed_users = this.props.users.filter(user => !followed_users.includes(user) && user.id !== user_logged.id )
+      console.log(this.props.users)
+      console.log(non_followed_users)
     }
 
     const renderMiniCards = () => {
@@ -53,13 +58,13 @@ class Home extends Component {
       } else return
     }
 
-    const renderUserCards = () => {
-      if (non_followed_users) {
-        return non_followed_users.map(user => (
-          <UserCard key={user.id} user={user}/>
-        ))
-      } else return
-    }
+    // const renderUserCards = () => {
+    //   if (non_followed_users) {
+    //     return non_followed_users.map(user => (
+    //       <UserCard key={user.id} user={user}/>
+    //     ))
+    //   } else return
+    // }
 
 
 
@@ -77,7 +82,10 @@ class Home extends Component {
         </div>
         <div className='suggested-box'>
           <h1>Suggested Users</h1>
-          {renderUserCards()}
+          {non_followed_users && 
+          non_followed_users.map(user => (
+            <UserCard key={user.id} user={user}/>))
+            }
         </div>
       </div>
     );
