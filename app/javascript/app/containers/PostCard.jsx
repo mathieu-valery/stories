@@ -11,8 +11,9 @@ class PostCard extends Component {
     render() {
       let user_logged = this.props.user_logged
       let icconColor = ''
-      let like_of_user_logged_for_this_post = this.props.user_logged.likes.filter(like => like.post.id == this.props.post.id)[0]
+      
       if (Object.keys(user_logged).length > 0 ) { //check if state is not empty
+      let like_of_user_logged_for_this_post = this.props.user_logged.likes.filter(like => like.post.id == this.props.post.id)[0]
         if (like_of_user_logged_for_this_post && like_of_user_logged_for_this_post.is_liked ) { //check if the user logged has a like set to true for this post
           icconColor = 'blue'
         } else {
