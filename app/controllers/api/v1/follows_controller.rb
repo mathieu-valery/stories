@@ -16,8 +16,14 @@ class Api::V1::FollowsController < ActionController::Base
                 render json: new_follow
             else
                 follow.is_followed ? follow.update(is_followed: false) : follow.update(is_followed: true)
+                users = User.all
+                puts users
                  # response to post request when user follow/unfollow another user. 
-                render json: follow
+                 render json: { 
+                    follow: FollowSerializer.new(follow).as_json,
+                    user_logged: UserSerializer.new(current_user).as_json,
+                    users: ActiveModel::SerializableResource.new(users, each_serializer: UserSerializer).as_json,
+                }
             end
     
     end

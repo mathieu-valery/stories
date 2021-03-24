@@ -1,4 +1,4 @@
-import { FETCH_USERS, POST_LIKED, POST_COMMENT } from '../actions';
+import { FETCH_USERS, POST_LIKED, POST_COMMENT, USER_FOLLOWED } from '../actions';
 
 export default function usersReducer(state = null, action) {
   switch (action.type) {
@@ -27,8 +27,12 @@ export default function usersReducer(state = null, action) {
             } else {
               return user
             }
-          })
-    }
+        }) 
+      }
+      case USER_FOLLOWED: {
+        let users = action.payload.data.users
+        return [...state, users]
+      }  
     default:
         return state;
     }

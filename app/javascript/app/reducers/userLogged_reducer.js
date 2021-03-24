@@ -1,4 +1,4 @@
-import { FETCH_USER_LOGGED, POST_LIKED } from '../actions';
+import { FETCH_USER_LOGGED, POST_LIKED, USER_FOLLOWED } from '../actions';
 
 export default function userLoggedReducer(state = null, action) {
   switch (action.type) {
@@ -10,6 +10,10 @@ export default function userLoggedReducer(state = null, action) {
       let updated_user = action.payload.data.user
         return {...state, ...updated_user};
       }
+    case USER_FOLLOWED: {
+      let user_logged = action.payload.data.user_logged
+      return {...state, ...user_logged}
+    }  
     default:
       return state;
   }

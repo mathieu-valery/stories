@@ -7,14 +7,14 @@ export default function followsReducer(state = null, action) {
     }
     case USER_FOLLOWED: {
       //if a new follow is created
-      let new_follow = action.payload.data
+      let new_follow = action.payload.data.follow
       if (!state.some((follow => follow.id === new_follow.id))) {
         return [...state, new_follow]
       }
       //if follow is updated
       return state.map(follow => {
-        if (follow.id === action.payload.data.id) {
-          return {...follow, ...action.payload.data}
+        if (follow.id === action.payload.data.follow.id) {
+          return {...follow, ...action.payload.data.follow}
         } else {
           return follow
         }
