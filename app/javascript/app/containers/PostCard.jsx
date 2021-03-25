@@ -40,7 +40,8 @@ class PostCard extends Component {
           <p className="card-header"><strong>{this.props.post.caption}</strong></p>
           <div className='flex'>
             <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.post.user.photo_key} width="50" crop="scale" />
-            <FollowButton user_id={this.props.post.user.id} className={buttonColor} text={buttonText}/>
+            {this.props.post.user.id !== this.props.user_logged.id && 
+            <FollowButton user_id={this.props.post.user.id} className={buttonColor} text={buttonText}/>}
           </div>
           <p><em>Posted by {this.props.post.user.username} at {this.props.post.created_at}</em></p>
 

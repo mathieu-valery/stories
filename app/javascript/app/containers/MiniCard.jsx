@@ -21,9 +21,10 @@ class MiniCard extends Component {
         return (
             <div className="non-followed-user">
                 <p>{this.props.user.username}</p>
-                <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
-                <FollowButton user_id={this.props.user.id} className={buttonColor} text={buttonText}/>
-                
+                <div className='flex'>
+                    <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
+                    <FollowButton user_id={this.props.user.id} className={buttonColor} text={buttonText}/>
+                </div>
             </div>
         )
     }
