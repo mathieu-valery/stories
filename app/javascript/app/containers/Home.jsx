@@ -28,9 +28,9 @@ class Home extends Component {
   render() {
 
     const user_logged = this.props.user_logged
-    let followers;
-    let followers_users;
-    let non_followers_users;
+    // let followers;
+    // let followers_users;
+    // let non_followers_users;
     let followed;
     let followed_users;
     let non_followed_users;
@@ -56,7 +56,7 @@ class Home extends Component {
         received_likes_per_users.push({user: user, likes: received_likes_counts.reduce((a, b) => a + b, 0)})
       })
 
-      //need further testing -- (add users and like to see if to five really works)
+      //need further testing -- (add users and like to see if top five really works)
       const descending_received_likes = received_likes_per_users.sort((a, b) => a.likes < b.likes ? 1 : -1)
       topFiveFollowing = descending_received_likes.slice(0, 5)
       console.log('TOP FIVE USERS_FOLLOWED IS:')
