@@ -44,7 +44,6 @@ class PostCard extends Component {
             <FollowButton user_id={this.props.post.user.id} className={buttonColor} text={buttonText}/>}
           </div>
           <p><em>Posted by {this.props.post.user.username} at {this.props.post.created_at}</em></p>
-
           <Video cloudName="dg4hemebf" publicId={this.props.post.video_key} controls={true} quality="auto" fetchFormat="auto" />
         
           <div className="icons flex">

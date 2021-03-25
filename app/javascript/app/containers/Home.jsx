@@ -72,19 +72,19 @@ class Home extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className='col-sm your-follows'>
+          <div className='col-sm-3 your-follows'>
             <h2>Your Top Accounts</h2>
             {topFiveFollowing && 
             topFiveFollowing.map(i => (
               <MiniCard key={i.user.id} user={i.user}/>))
               }
           </div>
-          <div className='col-sm feed'>
+          <div className='col-sm-5 feed'>
             {this.props.posts.map(post => (
               <PostCard post={post} key={post.id}/>
             ))}
           </div>
-          <div className='col-sm suggested-box'>
+          <div className='col-sm-3 suggested-box'>
             <h2>Suggested Users</h2>
             {non_followed_users && 
             non_followed_users.map(user => (
