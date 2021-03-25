@@ -1,4 +1,65 @@
 // Specific CSS for your home-page
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400;
+  padding-top: 80px;
+}
+
+.hello {
+    padding: 30px;
+}
+
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+}
+
+h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+}
+.header {
+  background-color: yellow;
+}
+
+.followers-column {
+  background-color: red;
+  width: 500px;
+  height: 800px;
+}
+
+.feed {
+  background-color: white;
+  width: 500px;
+}
+
+.suggested-box {
+  width: 400px;
+  height: 400px;
+  margin-left: 20px;
+}
+
+.flex {
+  display: flex
+}
+
+.follow-button {
+  margin-left: 10px;
+}
+
+
 body {
     background-color: white;
 }
@@ -8,3 +69,4 @@ video {
     height: 480px;
     border-radius: 2%;
 }
+

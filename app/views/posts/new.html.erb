@@ -1,7 +1,8 @@
-<%= simple_form_for [ @post ] do |f| %>
-    <%= f.input :caption %>
-    <%= f.input :video, as: :file %>
-    <%= f.submit "Send", class: "btn btn-travel-primary" %>
-    <% end %>
-
-<%= link_to 'Back', posts_path, class: "btn-travel-secondary mt-2" %>
+<div class='form-box'>
+    <%= simple_form_for [ @post ] do |f| %>
+        <%= f.input :caption %>
+        <%= f.input :video, as: :file %>
+        <%= f.submit "Send", class: "btn btn-primary" %>
+        <% end %>
+    <%= link_to 'Back', root_path, class: "btn-travel-secondary mt-2" %>
+</div>

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   
   root to: 'posts#index'
 
-  get '/posts', to: 'posts#index'
+  # get '/posts', to: 'posts#index'
 
-  mount ActionCable.server => '/cable'
+  # mount ActionCable.server => '/cable'
   
   #API
   namespace :api, defaults: {format: :json } do
@@ -23,4 +23,7 @@ Rails.application.routes.draw do
       post 'follows/(:id)', to: 'follows#follow_user'
     end
   end
+
+  match '*path', to: 'posts#index', via: :all
+
 end

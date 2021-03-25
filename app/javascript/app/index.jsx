@@ -1,15 +1,16 @@
 // external modules
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
+import { CreateHistory as history } from 'history'
 
 //internal modules
 import Home from './containers/Home'
-import Upload from './pages/Upload'
+
 import './App.css'
 
 // State and reducers
@@ -42,10 +43,12 @@ const reducers = combineReducers({
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter history={history}>
       <Switch>
-        <Route path="/" component={Home}/>
-        <Route path="/upload" component={Upload}/>
+        
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/posts" component={Home}/>
+        
       </Switch>
     </BrowserRouter>
   );

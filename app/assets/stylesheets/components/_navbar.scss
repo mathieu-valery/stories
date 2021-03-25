@@ -7,6 +7,15 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  border-bottom: 1px solid rgba(128, 128,128,0.25);
+
+}
+
+.logo {
+  width: 100px;
 }
