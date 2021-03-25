@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Component } from 'react'
-import FollowersColumn from '../components/FollowersColumn'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';

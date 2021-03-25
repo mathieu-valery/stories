@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-import Comments from './Comments';
-import CommentsIcon from './CommentsIcon';
-import LikesIcon from './LikesIcon';
+// import Comments from './Comments';
+// import CommentsIcon from './CommentsIcon';
+// import LikesIcon from './LikesIcon';
 import FollowButton from './FollowButton';
+import BottomCard from './BottomCard';
 
 class PostCard extends Component {
 
@@ -46,11 +47,7 @@ class PostCard extends Component {
           <p><em>Posted by {this.props.post.user.username} at {this.props.post.created_at}</em></p>
           <Video cloudName="dg4hemebf" publicId={this.props.post.video_key} controls={true} quality="auto" fetchFormat="auto" />
         
-          <div className="icons flex">
-            <LikesIcon post_id={this.props.post.id} className={icconColor}/>
-            <CommentsIcon post_id={this.props.post.id}/>
-          </div>
-          <Comments post_id={this.props.post.id}/>
+          <BottomCard post_id={this.props.post.id} className={icconColor}/>
         </div>
       );
     }
