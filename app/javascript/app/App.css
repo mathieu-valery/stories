@@ -21,11 +21,14 @@
 }
 
 .suggested-box {
-  background-color: blue;
   width: 400px;
   height: 400px;
 }
 
-.icons {
+.flex {
   display: flex
+}
+
+.follow-button {
+  margin-left: 10px;
 }

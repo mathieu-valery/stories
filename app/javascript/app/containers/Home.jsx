@@ -1,41 +1,109 @@
 import React, { useState, useEffect, Component } from 'react'
 import FollowersColumn from '../components/FollowersColumn'
-import PostCard from './PostCard'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged } from '../actions/index';
+import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers } from '../actions/index';
+import PostCard from './PostCard'
+import UserCard from './UserCard'
+import MiniCard from './MiniCard'
+
 
 class Home extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {users: [], user_logged: {}, unfollowed_users: []}
+  }
+
+  componentWillMount() {
     this.props.fetchPosts()
     this.props.fetchComments();
     this.props.fetchLikes();
     this.props.fetchUserLogged();
+    this.props.fetchFollows();
+    this.props.fetchUsers();
+
   }
 
+
   render() {
+
+    const user_logged = this.props.user_logged
+    // let followers;
+    // let followers_users;
+    // let non_followers_users;
+    let followed;
+    let followed_users;
+    let non_followed_users;
+    let topFiveFollowing;
+    
+    if (this.props.users.length > 0 && Object.keys(user_logged).length > 0) {
+
+      // followers = user_logged.received_follows.filter((received_follow) => received_follow.is_followed === true).map(received_follow => received_follow.follower)
+      // followers_users = this.props.users.filter(user => {if(followers.some(follower => follower.id==user.id)) return user})
+      // non_followers_users = this.props.users.filter(user => !followers_users.includes(user) && user.id !== user_logged.id )
+
+      followed = user_logged.follows.filter((follow) => follow.is_followed === true).map(follow => follow.followed_user)
+      followed_users = this.props.users.filter(user => {if(followed.some(followed => followed.id==user.id)) return user})
+      non_followed_users = this.props.users.filter(user => !followed_users.includes(user) && user.id !== user_logged.id )
+
+      let received_likes_per_users = []
+      followed_users.forEach(user => {
+        let posts = this.props.posts.filter(post => post.user.id == user.id)
+        let received_likes_counts = []
+        posts.forEach(post => {
+          received_likes_counts.push(post.likes.length)
+        })
+        received_likes_per_users.push({user: user, likes: received_likes_counts.reduce((a, b) => a + b, 0)})
+      })
+
+      //need further testing -- (add users and like to see if top five really works)
+      const descending_received_likes = received_likes_per_users.sort((a, b) => a.likes < b.likes ? 1 : -1)
+      topFiveFollowing = descending_received_likes.slice(0, 5)
+      console.log('TOP FIVE USERS_FOLLOWED IS:')
+      console.log(topFiveFollowing)
+
+
+    }
+
+
     return (
       <div className="container">
-          <FollowersColumn/>
-          <div className='feed'>
-            {this.props.posts.map(post => (
-              <PostCard post={post} key={post.id}/>
-            ))}
-          </div>
-          <div className='suggested-box'></div>
+        <div className='your-follows'>
+          <h1>Your Top Accounts</h1>
+          <h3>top 5 users you follow</h3>
+          {topFiveFollowing && 
+          topFiveFollowing.map(i => (
+            <MiniCard key={i.user.id} user={i.user}/>))
+            }
+        </div>
+        <div className='feed'>
+          {this.props.posts.map(post => (
+            <PostCard post={post} key={post.id}/>
+          ))}
+        </div>
+        <div className='suggested-box'>
+          <h1>Suggested Users</h1>
+          {non_followed_users && 
+          non_followed_users.map(user => (
+            <UserCard key={user.id} user={user}/>))
+            }
+        </div>
       </div>
     );
   }
 }
 
+
 function mapStateToProps(state) {
   return {
     posts: state.posts,
+    user_logged: state.user_logged,
+    users: state.users
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchPosts, fetchComments, fetchLikes, fetchUserLogged }, dispatch);
+  return bindActionCreators({ fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

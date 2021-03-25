@@ -51,21 +51,21 @@ posts = [
         user_id: User.first.id,
         caption: "Art factory exhibition"
         },
-        "https://res.cloudinary.com/dg4hemebf/video/upload/v1615372608/VID_20210309_155319_f2pyms.mp4"
+        "https://res.cloudinary.com/dg4hemebf/video/upload/v1616429095/VID_20210309_155319_igwsoh.mp4"
     ],
     [
         {
         user_id: User.first.id,
         caption: "lovely street in Paris"
         },
-        "https://res.cloudinary.com/dg4hemebf/video/upload/v1615372626/VID_20210309_161107_awet6b.mp4"
+        "https://res.cloudinary.com/dg4hemebf/video/upload/v1616429109/VID_20210309_161107_qvlk6q.mp4"
     ],
     [
         {
         user_id: User.first.id,
         caption: "I love les buttes chaumonts"
         },
-        "https://res.cloudinary.com/dg4hemebf/video/upload/v1615372647/VID_20210309_170946_ujmbfy.mp4"
+        "https://res.cloudinary.com/dg4hemebf/video/upload/v1616429133/VID_20210309_170946_leiy6y.mp4"
     ]
 ]
 
@@ -87,6 +87,6 @@ c.save!
 puts("Done")
 
 puts("Create Follows...")
-f = Follow.create(follower_id: User.first.id, followed_user_id: User.second.id)
+f = Follow.create(follower_id: User.first.id, followed_user_id: User.second.id, is_followed: true)
 f.save!
 puts("Done")

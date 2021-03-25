@@ -17,23 +17,27 @@ import postsReducer from './reducers/posts_reducer'
 import commentsReducer from './reducers/comments_reducer'
 import likesReducer from './reducers/likes_reducer'
 import userLoggedReducer from './reducers/userLogged_reducer'
+import followsReducer from './reducers/follows_reducer'
+import usersReducer from './reducers/users_reducer'
 
 const initialState = {
-  // users: [],
+  users: [],
   posts: [],
   comments: [],
   likes: [],
-  user_logged: {}
+  user_logged: {},
+  follows: []
 };
 
 const middlewares = applyMiddleware(logger, ReduxPromise);
 
 const reducers = combineReducers({
-  // users: usersReducer,
+  users: usersReducer,
   posts: postsReducer,
   comments: commentsReducer,
   likes: likesReducer,
-  user_logged: userLoggedReducer
+  user_logged: userLoggedReducer,
+  follows: followsReducer
 });
 
 function App() {

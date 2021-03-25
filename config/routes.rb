@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       post 'likes/(:id)', to: 'likes#like_post'
       resources :users, only: [:index]
       get '/user_logged', to: 'users#user_logged'
+      resources :follows, only: [:index]
+      post 'follows/(:id)', to: 'follows#follow_user'
     end
   end
 end

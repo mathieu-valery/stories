@@ -3,9 +3,12 @@ const BASE_URL = '/api/v1';
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const FETCH_LIKES = 'FETCH_LIKES'
+export const FETCH_USERS = 'FETCH_USERS'
 export const FETCH_USER_LOGGED = 'FETCH_USER_LOGGED'
 export const POST_COMMENT = 'POST_COMMENT'
 export const POST_LIKED = 'POST_LIKED'
+export const FETCH_FOLLOWS = 'FETCH_FOLLOWS'
+export const USER_FOLLOWED = 'USER_FOLLOWED'
 
 export function fetchPosts() {
   const promise = axios.get(`${BASE_URL}/posts`)
@@ -68,6 +71,36 @@ export function fetchComments() {
     const promise = await axios.post(url)
     return {
       type: 'POST_LIKED',
+      payload: promise // Will be resolved by redux-promise
+    };
+  }
+
+  export async function fetchFollows() {
+
+    const url = `${BASE_URL}/follows/`;
+    const promise = await axios.get(url)
+    return {
+      type: 'FETCH_FOLLOWS',
+      payload: promise // Will be resolved by redux-promise
+    };
+  }
+
+  export async function followUser(followed_user_id) {
+
+    const url = `${BASE_URL}/follows/${followed_user_id}`;
+    const promise = await axios.post(url)
+    return {
+      type: 'USER_FOLLOWED',
+      payload: promise // Will be resolved by redux-promise
+    };
+  }
+
+  export async function fetchUsers() {
+
+    const url = `${BASE_URL}/users/`;
+    const promise = await axios.get(url)
+    return {
+      type: 'FETCH_USERS',
       payload: promise // Will be resolved by redux-promise
     };
   }
