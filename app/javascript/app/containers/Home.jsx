@@ -16,7 +16,7 @@ class Home extends Component {
     this.state = {users: [], user_logged: {}}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchPosts()
     this.props.fetchComments();
     this.props.fetchLikes();
