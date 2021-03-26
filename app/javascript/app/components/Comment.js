@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 function Comments({comment}) {
@@ -10,5 +10,5 @@ function Comments({comment}) {
         </div>
     );
 }
-  
-  export default Comments;
+
+export default Comments;

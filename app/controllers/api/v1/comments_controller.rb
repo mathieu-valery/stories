@@ -2,6 +2,7 @@ class Api::V1::CommentsController < ActionController::Base
     skip_before_action :verify_authenticity_token
     def index
         comments = Comment.all
+
         render json: comments
     end
 

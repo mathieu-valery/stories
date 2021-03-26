@@ -33,7 +33,7 @@ class BottomCard extends Component {
         event.preventDefault();
         this.props.postComment(this.state.text, this.props.post_id)
         this.setState({text: ''})
-        this.displayComments();
+        if (!this.state.visible) this.displayComments();
     }
     render() {
         let filtered_likes = this.props.likes.filter(like => like.post.id == this.props.post_id)

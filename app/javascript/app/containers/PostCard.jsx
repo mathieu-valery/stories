@@ -12,6 +12,10 @@ class PostCard extends Component {
     render() {
       let user_logged = this.props.user_logged
       let icconColor = ''
+     
+      const timestamp = this.props.post.created_at
+      const date = timestamp.split('T')[0].split('-').reverse().join('/')
+      const hour = timestamp.split('T')[1].split('.')[0]
       
       if (Object.keys(user_logged).length > 0 ) { //check if state is not empty
       let like_of_user_logged_for_this_post = this.props.user_logged.likes.filter(like => like.post.id == this.props.post.id)[0]
@@ -44,7 +48,7 @@ class PostCard extends Component {
             {this.props.post.user.id !== this.props.user_logged.id && 
             <FollowButton user_id={this.props.post.user.id} className={buttonColor} text={buttonText}/>}
           </div>
-          <p><em>Posted by {this.props.post.user.username} at {this.props.post.created_at}</em></p>
+          <p><em>Posted by {this.props.post.user.username} at {date} {hour}</em></p>
           <Video cloudName="dg4hemebf" publicId={this.props.post.video_key} controls={true} quality="auto" fetchFormat="auto" />
         
           <BottomCard post_id={this.props.post.id} className={icconColor}/>
