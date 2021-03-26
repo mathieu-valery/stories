@@ -30,6 +30,11 @@ h2 {
 .container {
   display: flex;
 }
+
+.row {
+  justify-content: center;
+}
+
 .header {
   background-color: yellow;
 }
@@ -65,8 +70,33 @@ body {
 }
 
 video {
-    width: 270px;
-    height: 480px;
+    max-width: 270px;
+    max-height: 480px;
     border-radius: 2%;
 }
 
+@media screen and (max-width: 576px) {
+  .container {
+    justify-content: center
+  }
+
+  .your-follows {
+    display: none
+  }
+
+  .feed {
+    max-width: 300px;
+  }
+
+  .suggested-box {
+    display: none
+  }
+
+
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .follow-button {
+    margin-left: 0px;
+  }
+}
