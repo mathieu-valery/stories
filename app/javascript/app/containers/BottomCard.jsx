@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import { ActionCable } from 'actioncable';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -46,10 +45,8 @@ class BottomCard extends Component {
         let user_logged = this.props.user_logged
         let likes_for_this_post = this.props.likes.filter(like => like.post.id == this.props.post_id)
         let like_of_user_logged_for_this_post = likes_for_this_post.filter(like => like.user.id == user_logged.id)[0]
-       let icconColor
-       console.log(like_of_user_logged_for_this_post)
-        if (Object.keys(user_logged).length > 0 ) {
-            console.log('IN IF') //check if state is not empty
+        let icconColor
+        if (Object.keys(user_logged).length > 0 ) {//check if state is not empty
               if (like_of_user_logged_for_this_post && like_of_user_logged_for_this_post.is_liked ) { //check if the user logged has a like set to true for this post
                 icconColor = 'blue'
               } else {
@@ -58,7 +55,6 @@ class BottomCard extends Component {
         }
         let filtered_comments = this.props.comments.filter(comment => comment.post.id == this.props.post_id)
         let classNameIcon = `fas fa-thumbs-up like-icon ${icconColor}`
-        console.log(classNameIcon)
 
         return(
             <div>

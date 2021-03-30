@@ -29,8 +29,6 @@ class PostCard extends Component {
 
     // store new data from API
   handleLikePost = ({ like }) => {
-    console.log('received like is:')
-    console.log(like)
     this.props.setLike(like)
   }
 
@@ -41,17 +39,6 @@ class PostCard extends Component {
       const timestamp = this.props.post.created_at
       const date = timestamp.split('T')[0].split('-').reverse().join('/')
       const hour = timestamp.split('T')[1].split('.')[0]
-      console.log('IN RENDER')
-      console.log(this.props.likes)
-      if (Object.keys(user_logged).length > 0 ) { //check if state is not empty
-      // let likes_for_this_post = this.props.likes.filter(like => like.post.id == this.props.post.id)
-      console.log(this.props.likes)
-      //   if (like_of_user_logged_for_this_post && like_of_user_logged_for_this_post.is_liked ) { //check if the user logged has a like set to true for this post
-      //     icconColor = 'blue'
-      //   } else {
-      //     icconColor = 'black'
-      //   }
-      }
       
       let follows_of_current_user = this.props.follows.filter(follow => follow.follower.id === this.props.user_logged.id)
       let buttonColor
