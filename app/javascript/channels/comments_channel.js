@@ -1,7 +1,16 @@
-import consumer from "./consumer"
+// import consumer from "./consumer"
 
-const initCommentsCable = () => {
-    
-}
+// consumer.subscriptions.create('commentsChannels', {
+//     connected() {
+//         console.log('connected')
+//     },
 
-export {initCommentsCable};
+//     disconnected() {
+
+//     },
+
+//     received(data) {
+
+//     }
+
+// })

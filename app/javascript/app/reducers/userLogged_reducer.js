@@ -10,6 +10,7 @@ export default function userLoggedReducer(state = null, action) {
       let updated_user = action.payload.data.user
         return {...state, ...updated_user};
       }
+    
     case USER_FOLLOWED: {
       let user_logged = action.payload.data.user_logged
       return {...state, ...user_logged}

@@ -8,6 +8,7 @@ import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
 import { CreateHistory as history } from 'history'
 
+
 //internal modules
 import Home from './containers/Home'
 
@@ -30,6 +31,7 @@ const initialState = {
   follows: []
 };
 
+
 const middlewares = applyMiddleware(logger, ReduxPromise);
 
 const reducers = combineReducers({
@@ -40,6 +42,8 @@ const reducers = combineReducers({
   user_logged: userLoggedReducer,
   follows: followsReducer
 });
+
+
 
 function App() {
   return (

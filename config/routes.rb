@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   # get '/posts', to: 'posts#index'
 
-  # mount ActionCable.server => '/cable'
+  mount ActionCable.server => '/cable'
   
   #API
   namespace :api, defaults: {format: :json } do

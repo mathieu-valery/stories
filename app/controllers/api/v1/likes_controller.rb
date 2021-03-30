@@ -13,21 +13,24 @@ class Api::V1::LikesController < ActionController::Base
         
 
         if new_like.save
+
+        ActionCable.server.broadcast("likes_channel", like: LikeSerializer.new(like).as_json)
+        head :ok
         # response to post request when user like a post. it needs this special syntax to serialize multiple objects 
-            render json: { 
-                user: UserSerializer.new(current_user).as_json,
-                like: LikeSerializer.new(new_like).as_json,
-            }
+            # render json: { 
+            #     user: UserSerializer.new(current_user).as_json,
+            #     like: LikeSerializer.new(new_like).as_json,
+            # }
         else
             like.is_liked ? like.update(is_liked: false) : like.update(is_liked: true)
+        ActionCable.server.broadcast("likes_channel", like: LikeSerializer.new(like).as_json)
+        head :ok
                     # response to post request when user like a post. it needs this special syntax to serialize multiple objects
-            render json: { 
-                user: UserSerializer.new(current_user).as_json,
-                like: LikeSerializer.new(like).as_json,
-            }
+            # render json: { 
+            #     user: UserSerializer.new(current_user).as_json,
+            #     like: LikeSerializer.new(like).as_json,
+            # }
         end
-
-
         
     end
 end
