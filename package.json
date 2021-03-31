@@ -38,10 +38,5 @@
     "deploy": "cp -a client/build/. public/",
     "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
   },
-  "engines": {
-    "yarn": "1.22.10",
-    "npm": "7.5.2",
-    "node": "12.13.0"
-  },
   "proxy": "http://localhost:3001"
 }
