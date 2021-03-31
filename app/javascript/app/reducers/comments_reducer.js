@@ -19,12 +19,9 @@ export default function commentsReducer(state = null, action) {
       } else {
       const copiedState = state.slice(0);
       copiedState.push(action.payload);
-      console.log('IN REDUCER')
       console.log(copiedState)
       return copiedState;
     }
-
-    
     default:
       return state;
   }

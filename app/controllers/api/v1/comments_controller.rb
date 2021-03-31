@@ -6,7 +6,7 @@ class Api::V1::CommentsController < ActionController::Base
 
     def create
         post = Post.find(params[:id])
-        comment = Comment.new(text: params[:body], post_id: post.id, user_id: current_user.id) #mettre des strong params ??
+        comment = Comment.new(text: params[:body], post_id: post.id, user_id: current_user.id)
         comment.save!
         
         ActionCable.server.broadcast("comments_channel", comment: CommentSerializer.new(comment).as_json)

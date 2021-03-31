@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import React  from 'react'
+import { Image } from 'cloudinary-react';
 
 function Comments({comment}) {
 

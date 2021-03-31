@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Component } from 'react'
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers } from '../actions/index';
 import PostCard from './PostCard'
 import UserCard from './UserCard'
-import MiniCard from './MiniCard'
+import BestUsersCard from './BestUsersCard'
 
 const BASE_URL = '/api/v1';
 
@@ -75,7 +75,7 @@ class Home extends Component {
             <h2>Your Top Accounts</h2>
             {topFiveFollowing && 
             topFiveFollowing.map(i => (
-              <MiniCard key={i.user.id} user={i.user}/>))
+              <BestUsersCard key={i.user.id} user={i.user}/>))
               }
           </div>
           <div className='col-sm-5 feed'>

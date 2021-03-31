@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-// import Comments from './Comments';
-// import CommentsIcon from './CommentsIcon';
-// import LikesIcon from './LikesIcon';
+import {Image, Video } from 'cloudinary-react';
 import FollowButton from './FollowButton';
 import BottomCard from './BottomCard';
 import ActionCable from 'actioncable'
@@ -33,9 +30,7 @@ class PostCard extends Component {
   }
 
     render() {
-      let user_logged = this.props.user_logged
       let icconColor = ''
-     
       const timestamp = this.props.post.created_at
       const date = timestamp.split('T')[0].split('-').reverse().join('/')
       const hour = timestamp.split('T')[1].split('.')[0]
