@@ -35,14 +35,8 @@ h2 {
   justify-content: center;
 }
 
-.header {
-  background-color: yellow;
-}
-
-.followers-column {
-  background-color: red;
-  width: 500px;
-  height: 800px;
+.your-follows {
+  margin-right: 20px;
 }
 
 .feed {
@@ -51,8 +45,6 @@ h2 {
 }
 
 .suggested-box {
-  width: 400px;
-  height: 400px;
   margin-left: 20px;
 }
 
@@ -73,7 +65,9 @@ video {
     max-width: 270px;
     max-height: 480px;
     border-radius: 2%;
+    width: 100%;
 }
+
 
 @media screen and (max-width: 576px) {
   .container {
@@ -96,7 +90,8 @@ video {
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
-  .follow-button {
+  .top-five-users .flex .follow-button {
     margin-left: 0px;
   }
+
 }
