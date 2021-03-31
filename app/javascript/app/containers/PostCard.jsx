@@ -31,9 +31,8 @@ class PostCard extends Component {
 
     render() {
       let icconColor = ''
-      const timestamp = this.props.post.created_at
-      const date = timestamp.split('T')[0].split('-').reverse().join('/')
-      const hour = timestamp.split('T')[1].split('.')[0]
+      const date = new Date(this.props.post.created_at).toLocaleDateString()
+      const time = new Date(this.props.post.created_at).toLocaleTimeString();
       
       let follows_of_current_user = this.props.follows.filter(follow => follow.follower.id === this.props.user_logged.id)
       let buttonColor
@@ -57,7 +56,7 @@ class PostCard extends Component {
             {this.props.post.user.id !== this.props.user_logged.id && 
             <FollowButton user_id={this.props.post.user.id} className={buttonColor} text={buttonText}/>}
           </div>
-          <p><em>Posted by {this.props.post.user.username} at {date} {hour}</em></p>
+          <p><em>Posted by {this.props.post.user.username} at {date} {time}</em></p>
           <Video cloudName="dg4hemebf" publicId={this.props.post.video_key} controls={true} quality="auto" fetchFormat="auto" />
         
           <BottomCard post_id={this.props.post.id} className={icconColor}/>
