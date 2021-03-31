@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :photo])
   end
+
+  def user_id
+    if decoded_token
+      decoded_token[0]["user_id"]
+    end
+  end
 end
