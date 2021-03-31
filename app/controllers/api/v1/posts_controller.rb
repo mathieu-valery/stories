@@ -24,6 +24,3 @@ class Api::V1::PostsController < ApplicationController
     end
 
 end
-    #     render json: posts.map { |post|
-    #         post.as_json.merge({ video: post.video.key })
-    #       }

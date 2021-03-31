@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import { ActionCable } from 'actioncable';
+import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { LikeThisPost, postComment } from '../actions/index'
 import Comment from '../components/Comment'
 
+const BASE_URL = '/api/v1';
 
 class BottomCard extends Component {
     constructor(props) {
@@ -15,8 +16,8 @@ class BottomCard extends Component {
     }
 
     handleClick = async () => {
-        await this.props.LikeThisPost(this.props.post_id)
-
+        const url = `${BASE_URL}/likes/${this.props.post_id}`;
+        await axios.post(url)
     }
 
     displayComments = () => {
@@ -35,17 +36,32 @@ class BottomCard extends Component {
         this.setState({text: ''})
         if (!this.state.visible) this.displayComments();
     }
+
+    componentDidUpdate() {
+        
+    }
+
     render() {
-        let filtered_likes = this.props.likes.filter(like => like.post.id == this.props.post_id)
+        let user_logged = this.props.user_logged
+        let likes_for_this_post = this.props.likes.filter(like => like.post.id == this.props.post_id)
+        let like_of_user_logged_for_this_post = likes_for_this_post.filter(like => like.user.id == user_logged.id)[0]
+        let icconColor
+        if (Object.keys(user_logged).length > 0 ) {//check if state is not empty
+              if (like_of_user_logged_for_this_post && like_of_user_logged_for_this_post.is_liked ) { //check if the user logged has a like set to true for this post
+                icconColor = 'blue'
+              } else {
+                icconColor = 'black'
+              }
+        }
         let filtered_comments = this.props.comments.filter(comment => comment.post.id == this.props.post_id)
-        let classNameIcon = `fas fa-thumbs-up like-icon ${this.props.className}`
+        let classNameIcon = `fas fa-thumbs-up like-icon ${icconColor}`
 
         return(
             <div>
                 <div className='flex'>
                     <div className='likes-section'>
                         <i id={`button ${this.props.post_id}`} onClick={this.handleClick} className={classNameIcon}></i>
-                        <p>({filtered_likes.filter(like => like.is_liked).length})</p>
+                        <p>({likes_for_this_post.filter(like => like.is_liked).length})</p>
                     </div>
 
                     <div className="comments-section">

@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 import FollowButton from './FollowButton';
 
 
-class MiniCard extends Component {
+class BestUsersCard extends Component {
 
     render() {
         let buttonColor
@@ -19,7 +19,7 @@ class MiniCard extends Component {
             buttonText = 'Follow'
         }
         return (
-            <div className="non-followed-user">
+            <div className="top-five-users">
                 <p>{this.props.user.username}</p>
                 <div className='flex'>
                     <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
@@ -37,4 +37,4 @@ function mapStateToProps(state) {
     };
   }  
 
-export default connect(mapStateToProps)(MiniCard)
+export default connect(mapStateToProps)(BestUsersCard)

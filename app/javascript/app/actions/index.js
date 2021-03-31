@@ -1,12 +1,14 @@
 import axios from 'axios';
+
 const BASE_URL = '/api/v1';
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
+export const SET_COMMENTS = 'SET_COMMENTS'
 export const FETCH_LIKES = 'FETCH_LIKES'
 export const FETCH_USERS = 'FETCH_USERS'
 export const FETCH_USER_LOGGED = 'FETCH_USER_LOGGED'
 export const POST_COMMENT = 'POST_COMMENT'
-export const POST_LIKED = 'POST_LIKED'
+export const SET_LIKE = 'SET_LIKE'
 export const FETCH_FOLLOWS = 'FETCH_FOLLOWS'
 export const USER_FOLLOWED = 'USER_FOLLOWED'
 
@@ -30,6 +32,13 @@ export function fetchComments() {
     };
   }
 
+export function setComment(comment) {
+  return {
+    type: 'SET_COMMENTS',
+    payload: comment 
+  };
+}
+
   export function fetchLikes() {
     const promise = axios.get(`${BASE_URL}/likes`)
       .then(response => response.data)
@@ -37,6 +46,13 @@ export function fetchComments() {
     return {
       type: 'FETCH_LIKES',
       payload: promise // Will be resolved by redux-promise
+    };
+  }
+
+  export function setLike(like) {
+    return {
+      type: 'SET_LIKE',
+      payload: like 
     };
   }
 
@@ -59,18 +75,9 @@ export function fetchComments() {
     .then(() => axios.get(`${BASE_URL}/comments`) //fetch comments
     .then(response => response.data.slice(-1)[0])) //get last comment => the one just created
     .catch(error => console.log("Error while fetching data : " + error))
+    console.log(promise)
     return {
       type: 'POST_COMMENT',
-      payload: promise // Will be resolved by redux-promise
-    };
-  }
-
-  export async function LikeThisPost(post_id) {
-
-    const url = `${BASE_URL}/likes/${post_id}`;
-    const promise = await axios.post(url)
-    return {
-      type: 'POST_LIKED',
       payload: promise // Will be resolved by redux-promise
     };
   }

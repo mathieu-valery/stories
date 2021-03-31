@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+import { Image } from 'cloudinary-react';
 import FollowButton from './FollowButton';
 
 

@@ -1,30 +1,39 @@
 import React, {Component} from 'react'
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
-// import Comments from './Comments';
-// import CommentsIcon from './CommentsIcon';
-// import LikesIcon from './LikesIcon';
+import {Image, Video } from 'cloudinary-react';
 import FollowButton from './FollowButton';
 import BottomCard from './BottomCard';
+import ActionCable from 'actioncable'
+import { setComment, setLike } from '../actions/index'
 
 class PostCard extends Component {
+  componentDidMount() {
+    const cable = ActionCable.createConsumer('ws://localhost:3000/cable');
+    cable.subscriptions.create('CommentsChannel', {
+      received: this.handleNewComment
+    });
+
+    cable.subscriptions.create('LikesChannel', {
+      received: this.handleLikePost
+    });
+  }
+  
+  // store new data from API
+  handleNewComment = ({ comment }) => {
+    this.props.setComment(comment)
+  }
+
+    // store new data from API
+  handleLikePost = ({ like }) => {
+    this.props.setLike(like)
+  }
 
     render() {
-      let user_logged = this.props.user_logged
       let icconColor = ''
-     
       const timestamp = this.props.post.created_at
       const date = timestamp.split('T')[0].split('-').reverse().join('/')
       const hour = timestamp.split('T')[1].split('.')[0]
-      
-      if (Object.keys(user_logged).length > 0 ) { //check if state is not empty
-      let like_of_user_logged_for_this_post = this.props.user_logged.likes.filter(like => like.post.id == this.props.post.id)[0]
-        if (like_of_user_logged_for_this_post && like_of_user_logged_for_this_post.is_liked ) { //check if the user logged has a like set to true for this post
-          icconColor = 'blue'
-        } else {
-          icconColor = 'black'
-        }
-      }
       
       let follows_of_current_user = this.props.follows.filter(follow => follow.follower.id === this.props.user_logged.id)
       let buttonColor
@@ -60,10 +69,16 @@ class PostCard extends Component {
 function mapStateToProps(state) {
   return {
    user_logged: state.user_logged,
-   follows: state.follows
+   follows: state.follows,
+   likes: state.like
   };
 }  
-export default connect(mapStateToProps)(PostCard);
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setComment, setLike }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostCard);
 
 
   
