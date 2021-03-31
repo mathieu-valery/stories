@@ -33,10 +33,5 @@
   "repository": "git@github.com:mathieu-valery/tik-tok.git",
   "author": "Mathieu Valery <mathieuromainvalery@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "cd client && yarn install && yarn build && cd ..",
-    "deploy": "cp -a client/build/. public/",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
-  },
   "proxy": "http://localhost:3001"
 }
