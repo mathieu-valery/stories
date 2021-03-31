@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { LikeThisPost, postComment } from '../actions/index'
+import { postComment } from '../actions/index'
 import Comment from '../components/Comment'
 
 const BASE_URL = '/api/v1';
@@ -96,7 +96,7 @@ class BottomCard extends Component {
   }
   
   function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ LikeThisPost, postComment }, dispatch);
+    return bindActionCreators({ postComment }, dispatch);
   }
   
 export default connect(mapStateToProps, mapDispatchToProps)(BottomCard);

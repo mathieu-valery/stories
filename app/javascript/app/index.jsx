@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import logger from 'redux-logger'
 import ReduxPromise from 'redux-promise';
-import { CreateHistory as history } from 'history'
+// import { CreateHistory as history } from 'history'
 
 
 //internal modules
@@ -47,7 +47,7 @@ const reducers = combineReducers({
 
 function App() {
   return (
-    <BrowserRouter history={history}>
+    <BrowserRouter>
       <Switch>
         
         <Route exact path="/" component={Home}/>
