@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = '/api/v1';
+// const BASE_URL = '/api/v1';
 export const FETCH_POSTS = 'FETCH_POSTS'
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const SET_COMMENTS = 'SET_COMMENTS'
@@ -13,7 +13,7 @@ export const FETCH_FOLLOWS = 'FETCH_FOLLOWS'
 export const USER_FOLLOWED = 'USER_FOLLOWED'
 
 export function fetchPosts() {
-  const promise = axios.get(`${BASE_URL}/posts`)
+  const promise = axios.get(`/posts`) //removed BASE URL
     .then(response => response.data)
     .catch(error => console.log("Error while fetching data : " + error))
   return {
@@ -23,7 +23,7 @@ export function fetchPosts() {
 }
 
 export function fetchComments() {
-    const promise = axios.get(`${BASE_URL}/comments`)
+    const promise = axios.get(`/comments`) //removed BASE URL
       .then(response => response.data)
       .catch(error => console.log("Error while fetching data : " + error))
     return {
@@ -40,7 +40,7 @@ export function setComment(comment) {
 }
 
   export function fetchLikes() {
-    const promise = axios.get(`${BASE_URL}/likes`)
+    const promise = axios.get(`/likes`) //removed BASE URL
       .then(response => response.data)
       .catch(error => console.log("Error while fetching data : " + error))
     return {
@@ -57,7 +57,7 @@ export function setComment(comment) {
   }
 
   export function fetchUserLogged() {
-    const url = `${BASE_URL}/user_logged/`
+    const url = `/user_logged/` //removed BASE URL
     const promise = axios.get(url)
     .then(response => response.data)
     .catch(error => console.log("Error while fetching data : " + error));
@@ -70,7 +70,7 @@ export function setComment(comment) {
 
   export function postComment(text, post_id) {
 
-    const url = `${BASE_URL}/comments/${post_id}`;
+    const url = `/comments/${post_id}`; //removed BASE URL
     const promise = axios.post(url, {body: text})
     .then(() => axios.get(`${BASE_URL}/comments`) //fetch comments
     .then(response => response.data.slice(-1)[0])) //get last comment => the one just created
@@ -84,7 +84,7 @@ export function setComment(comment) {
 
   export async function fetchFollows() {
 
-    const url = `${BASE_URL}/follows/`;
+    const url = `/follows/`; //removed BASE URL
     const promise = await axios.get(url)
     return {
       type: 'FETCH_FOLLOWS',
@@ -94,7 +94,7 @@ export function setComment(comment) {
 
   export async function followUser(followed_user_id) {
 
-    const url = `${BASE_URL}/follows/${followed_user_id}`;
+    const url = `/follows/${followed_user_id}`; //removed BASE URL
     const promise = await axios.post(url)
     return {
       type: 'USER_FOLLOWED',
@@ -104,7 +104,7 @@ export function setComment(comment) {
 
   export async function fetchUsers() {
 
-    const url = `${BASE_URL}/users/`;
+    const url = `/users/`; //removed BASE URL
     const promise = await axios.get(url)
     return {
       type: 'FETCH_USERS',
