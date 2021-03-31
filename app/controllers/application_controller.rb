@@ -9,9 +9,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :photo])
   end
 
-  def user_id
-    if decoded_token
-      decoded_token[0]["user_id"]
-    end
-  end
 end
