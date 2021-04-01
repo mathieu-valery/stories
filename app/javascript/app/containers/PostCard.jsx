@@ -9,7 +9,7 @@ import { setComment, setLike } from '../actions/index'
 
 class PostCard extends Component {
   componentDidMount() {
-    const cable = ActionCable.createConsumer('ws://mathieu-tik-tok-clone.herokuapp.com//cable');
+    const cable = ActionCable.createConsumer('ws://mathieu-tik-tok-clone.herokuapp.com/cable');
     cable.subscriptions.create('CommentsChannel', {
       received: this.handleNewComment
     });
