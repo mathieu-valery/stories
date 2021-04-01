@@ -19,7 +19,7 @@ class PostCard extends Component {
     });
   }
   
-  // store new data from API
+  // store new data from APIg
   handleNewComment = ({ comment }) => {
     this.props.setComment(comment)
   }
