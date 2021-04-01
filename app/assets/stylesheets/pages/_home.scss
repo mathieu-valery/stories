@@ -31,6 +31,10 @@ h2 {
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .row {
   justify-content: center;
 }
