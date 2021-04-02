@@ -9,4 +9,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :photo])
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_url
+  end
 end
