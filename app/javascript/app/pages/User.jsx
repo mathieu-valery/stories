@@ -17,7 +17,7 @@ const BASE_URL = '/api/v1';
 class User extends Component {
     constructor(props) {
         super(props);
-        this.state = {user: {}, posts: [], follows: [], receivedFollows: []}
+        this.state = {user: {}, posts: [], follows: [], receivedFollows: [], receivedLikes: []}
     }
 
     componentDidMount(){
@@ -28,6 +28,7 @@ class User extends Component {
             posts: response.data.find(user => user.id == this.props.match.params.id).posts,
             follows: response.data.find(user => user.id == this.props.match.params.id).follows,
             receivedFollows: response.data.find(user => user.id == this.props.match.params.id).received_follows,
+            receivedLikes: response.data.find(user => user.id == this.props.match.params.id).received_likes,
         }))
 
     }
@@ -35,12 +36,31 @@ class User extends Component {
     render() {
     console.log(this.state.user)
         return (
-            <div>
-                 <Image className="avatar" cloudName="dg4hemebf" publicId={this.state.user.photo_key} width="50" crop="scale" />
-                <h3>{this.state.user.username}</h3>
-                <p>Posts : {this.state.posts.length}</p>
-                <p>Following : {this.state.follows.filter(follow => follow.is_followed == true).length}</p>
-                <p>Followers: {this.state.receivedFollows.filter(follow => follow.is_followed == true).length}</p>
+            <div classsName='container' >
+                <div className='flex center'>
+            
+                    <Image className="avatar" cloudName="dg4hemebf" publicId={this.state.user.photo_key} width="50" crop="scale" />
+                        
+
+                
+                </div>
+                <div className='flex center'>
+                    <h3>{this.state.user.username}</h3>
+                </div>
+                <div className='flex space-evenly'>
+                        <div className='flex column items-center'>
+                            <p>{this.state.follows.filter(follow => follow.is_followed).length}</p>
+                            <p>Following</p>
+                        </div >
+                        <div className='flex column items-center'>
+                            <p>{this.state.receivedFollows.filter(follow => follow.is_followed).length}</p>
+                            <p>Followers</p>
+                        </div>
+                        <div className='flex column items-center'>
+                            <p>{this.state.receivedLikes.filter(follow => follow.is_liked).length}</p>
+                            <p>Likes</p>
+                        </div>
+                </div>
             </div>
         );
     }
