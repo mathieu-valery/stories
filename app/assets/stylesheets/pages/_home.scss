@@ -79,6 +79,20 @@ video {
     width: 100%;
 }
 
+.user-link {
+  color: black;
+}
+
+.user-link > p {
+  margin-bottom: 5px;
+  margin-top: 8px;
+}
+
+.user-link:hover {
+  color: rgba($color: #000000, $alpha: 0.6);
+  text-decoration: none;
+}
+
 
 @media screen and (max-width: 576px) {
   .container {
@@ -96,8 +110,6 @@ video {
   .suggested-box {
     display: none
   }
-
-
 }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {

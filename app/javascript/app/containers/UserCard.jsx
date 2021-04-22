@@ -23,9 +23,11 @@ class UserCard extends Component {
         }
         return (
             <div className="non-followed-user">
-                <a href={QueryString}><p>{this.props.user.username}</p></a>
+                <a href={QueryString} className='user-link'><p>{this.props.user.username}</p></a>
                 <div className='flex'>
-                    <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
+                    <a href={QueryString}>
+                        <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
+                    </a>
                     <FollowButton user_id={this.props.user.id} className={buttonColor} text={buttonText}/>
                 </div>
             </div>

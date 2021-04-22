@@ -48,11 +48,15 @@ class PostCard extends Component {
         buttonText = 'Follow'
       }
       
+      let QueryString = `/users/${this.props.post.user.id}`
+
       return (
         <div className='post-card'>
           <p className="card-title font-size-20"><strong>{this.props.post.caption}</strong></p>
           <div className='flex'>
-            <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.post.user.photo_key} width="50" crop="scale" />
+            <a href={QueryString}>
+              <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.post.user.photo_key} width="50" crop="scale" />
+            </a>
             {this.props.post.user.id !== this.props.user_logged.id && 
             <FollowButton user_id={this.props.post.user.id} className={buttonColor} text={buttonText}/>}
           </div>

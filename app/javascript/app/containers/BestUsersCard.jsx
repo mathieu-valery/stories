@@ -9,6 +9,7 @@ class BestUsersCard extends Component {
     render() {
         let buttonColor
         let buttonText
+        let QueryString = `/users/${this.props.user.id}`
 
         if (this.props.user.received_follows.some(follow => follow.follower.id == this.props.user_logged.id && follow.is_followed)) {
             buttonColor = 'btn btn-light follow-button'
@@ -20,9 +21,11 @@ class BestUsersCard extends Component {
         }
         return (
             <div className="top-five-users">
-                <p>{this.props.user.username}</p>
+                <a href={QueryString} className='user-link'><p>{this.props.user.username}</p></a>
                 <div className='flex'>
+                <a href={QueryString}>
                     <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
+                </a>
                     <FollowButton user_id={this.props.user.id} className={buttonColor} text={buttonText}/>
                 </div>
             </div>
