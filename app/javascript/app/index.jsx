@@ -10,7 +10,8 @@ import ReduxPromise from 'redux-promise';
 
 
 //internal modules
-import Home from './containers/Home'
+import Home from './pages/Home'
+import User from './pages/User'
 
 import './App.css'
 
@@ -51,7 +52,7 @@ function App() {
       <Switch>
         
         <Route exact path="/" component={Home}/>
-        <Route exact path="/posts" component={Home}/>
+        <Route path="/users/:id" component={User}/>
         
       </Switch>
     </BrowserRouter>

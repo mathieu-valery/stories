@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers } from '../actions/index';
-import PostCard from './PostCard'
-import UserCard from './UserCard'
-import BestUsersCard from './BestUsersCard'
+import PostCard from '../containers/PostCard'
+import UserCard from '../containers/UserCard'
+import BestUsersCard from '../containers/BestUsersCard'
 
 const BASE_URL = '/api/v1';
 
