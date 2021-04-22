@@ -50,7 +50,7 @@ class PostCard extends Component {
       
       return (
         <div className='post-card'>
-          <p className="card-title"><strong>{this.props.post.caption}</strong></p>
+          <p className="card-title font-size-20"><strong>{this.props.post.caption}</strong></p>
           <div className='flex'>
             <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.post.user.photo_key} width="50" crop="scale" />
             {this.props.post.user.id !== this.props.user_logged.id && 
