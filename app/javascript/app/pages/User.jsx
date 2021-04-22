@@ -17,7 +17,7 @@ const BASE_URL = '/api/v1';
 class User extends Component {
     constructor(props) {
         super(props);
-        this.state = {user: {}, posts: [], follows: [], receivedFollows: [], receivedLikes: []}
+        this.state = {user: {}, posts: [], follows: [], receivedFollows: [], receivedLikes: [], user_logged: {}}
     }
 
     componentDidMount(){
@@ -29,23 +29,30 @@ class User extends Component {
             follows: response.data.find(user => user.id == this.props.match.params.id).follows,
             receivedFollows: response.data.find(user => user.id == this.props.match.params.id).received_follows,
             receivedLikes: response.data.find(user => user.id == this.props.match.params.id).received_likes,
-        }))
-
+        }));
+        axios.get(`${BASE_URL}/user_logged`).then(response => this.setState({user_logged: response.data}));
     }
     
     render() {
-    console.log(this.state.user)
+    let editProfileLink 
+    if (this.state.user.id == this.state.user_logged.id) {
+        editProfileLink = 
+        <div className='flex center'>
+            <a href='/users/edit'>Edit My Profile</a>
+        </div>
+    } else {
+        editProfileLink = <div></div>
+    }
+
         return (
-            <div classsName='container' >
+            <div className='container-user-page'>
                 <div className='flex center'>
             
-                    <Image className="avatar" cloudName="dg4hemebf" publicId={this.state.user.photo_key} width="50" crop="scale" />
+                    <Image className="avatar-large" cloudName="dg4hemebf" publicId={this.state.user.photo_key} width="50"  />
                         
-
-                
                 </div>
                 <div className='flex center'>
-                    <h3>{this.state.user.username}</h3>
+                    <h3 className='username-user-page'>{this.state.user.username}</h3>
                 </div>
                 <div className='flex space-evenly'>
                         <div className='flex column items-center'>
@@ -61,6 +68,7 @@ class User extends Component {
                             <p>Likes</p>
                         </div>
                 </div>
+                {editProfileLink}
             </div>
         );
     }

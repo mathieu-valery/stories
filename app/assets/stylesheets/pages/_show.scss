@@ -1,3 +1,8 @@
+.container-user-page {
+    width: 800px;
+    margin: 0 auto;
+}
+
 .flex {
     display: flex;
 }
@@ -7,7 +12,8 @@
 }
 
 .items-center {
-    align-items: center
+    align-items: center;
+    flex: 1;
 }
 
 .space-evenly {
@@ -16,4 +22,8 @@
 
 .center {
     justify-content: center;
+}
+
+.username-user-page {
+    font-size: 40px;
 }
