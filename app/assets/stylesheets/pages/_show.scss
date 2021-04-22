@@ -2,6 +2,9 @@
     width: 800px;
     margin: 0 auto;
 }
+.padding-bottom-small {
+    padding-bottom: 20px;
+}
 
 .flex {
     display: flex;
@@ -26,4 +29,48 @@
 
 .username-user-page {
     font-size: 40px;
+}
+
+.count-font-size {
+    font-size: 20px;
+}
+
+.edit-profil-btn {
+    background: white;
+    border: 1px solid rgba($color: #000000, $alpha: 0.25);
+    border-radius: 2px;
+    padding: 12px;
+    
+}
+
+.edit-profil-btn:hover {
+    background: rgba($color: #000000, $alpha: 0.1)
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fill, 480px);
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.justify-center {
+    justify-self: center;
+}
+
+@media screen and (max-width: 900px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .container-user-page {
+        width: auto;
+    }
 }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUsers } from '../actions/index';
 import axios from 'axios';
-import { Image } from 'cloudinary-react';
+import { Image, Video } from 'cloudinary-react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,38 +37,42 @@ class User extends Component {
     let editProfileLink 
     if (this.state.user.id == this.state.user_logged.id) {
         editProfileLink = 
-        <div className='flex center'>
-            <a href='/users/edit'>Edit My Profile</a>
+        <div className='flex center padding-bottom-small'>
+            <a href='/users/edit'>
+                <button className='edit-profil-btn'><strong>Edit profile</strong></button>
+            </a>
         </div>
     } else {
         editProfileLink = <div></div>
     }
 
         return (
+        
             <div className='container-user-page'>
-                <div className='flex center'>
-            
+                <div className='flex column items-center'>
                     <Image className="avatar-large" cloudName="dg4hemebf" publicId={this.state.user.photo_key} width="50"  />
-                        
+                    <h3 className='username-user-page'>{this.state.user.username}</h3>  
                 </div>
-                <div className='flex center'>
-                    <h3 className='username-user-page'>{this.state.user.username}</h3>
-                </div>
-                <div className='flex space-evenly'>
+                <div className='flex space-evenly padding-bottom-small'>
                         <div className='flex column items-center'>
-                            <p>{this.state.follows.filter(follow => follow.is_followed).length}</p>
+                            <p className='count-font-size'><strong>{this.state.follows.filter(follow => follow.is_followed).length}</strong></p>
                             <p>Following</p>
                         </div >
                         <div className='flex column items-center'>
-                            <p>{this.state.receivedFollows.filter(follow => follow.is_followed).length}</p>
+                            <p className='count-font-size'><strong>{this.state.receivedFollows.filter(follow => follow.is_followed).length}</strong></p>
                             <p>Followers</p>
                         </div>
                         <div className='flex column items-center'>
-                            <p>{this.state.receivedLikes.filter(follow => follow.is_liked).length}</p>
+                            <p className='count-font-size'><strong>{this.state.receivedLikes.filter(follow => follow.is_liked).length}</strong></p>
                             <p>Likes</p>
                         </div>
                 </div>
                 {editProfileLink}
+                <div className='grid'>
+                    {this.state.posts
+                        .map(post => (<Video className='justify-center' key={post.id} cloudName="dg4hemebf" publicId={post.video_key} controls={true} quality="auto" fetchFormat="auto" />))
+                    }
+                </div>
             </div>
         );
     }
