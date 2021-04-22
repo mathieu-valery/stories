@@ -37,7 +37,7 @@ class User extends Component {
     let editProfileLink 
     if (this.state.user.id == this.state.user_logged.id) {
         editProfileLink = 
-        <div className='flex center padding-bottom-small'>
+        <div className='flex center padding-bottom-20'>
             <a href='/users/edit'>
                 <button className='edit-profil-btn'><strong>Edit profile</strong></button>
             </a>
@@ -51,9 +51,9 @@ class User extends Component {
             <div className='container-user-page'>
                 <div className='flex column items-center'>
                     <Image className="avatar-large" cloudName="dg4hemebf" publicId={this.state.user.photo_key} width="50"  />
-                    <h3 className='username-user-page'>{this.state.user.username}</h3>  
+                    <h2 className='username-user-page padding-top-10'>{this.state.user.username}</h2>  
                 </div>
-                <div className='flex space-evenly padding-bottom-small'>
+                <div className='flex space-evenly padding-bottom-20'>
                         <div className='flex column items-center'>
                             <p className='count-font-size'><strong>{this.state.follows.filter(follow => follow.is_followed).length}</strong></p>
                             <p>Following</p>
