@@ -25,9 +25,9 @@ class User extends Component {
     }
     
     render() {
-    let editProfileLink 
+    let buttons
     if (this.state.user.id == this.state.user_logged.id) {
-        editProfileLink = 
+        buttons = 
         <div className='flex center padding-bottom-20'>
             <a className='edit-profile-link' href='/users/edit'>
                 <button className='edit-profil-btn'><strong>Edit profile</strong></button>
@@ -37,7 +37,17 @@ class User extends Component {
             </a>
         </div>
     } else {
-        editProfileLink = <div></div>
+        buttons = <div></div>
+    }
+
+    let message
+    if (this.state.posts.length == 0 && Object.keys(this.state.user).length > 0) {
+        message = 
+        <div className='flex center padding-bottom-20'>
+            <p>({this.state.user.username} has no video yet)</p>
+        </div>
+    } else {
+        message = <div></div>
     }
 
         return (
@@ -61,7 +71,8 @@ class User extends Component {
                             <p>Likes</p>
                         </div>
                 </div>
-                {editProfileLink}
+                {buttons}
+                {message}
                 <div className='grid'>
                     {this.state.posts
                         .map(post => (<Video className='justify-center' key={post.id} cloudName="dg4hemebf" publicId={post.video_key} controls={true} quality="auto" fetchFormat="auto" />))
