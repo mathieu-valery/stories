@@ -1,16 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchUsers } from '../actions/index';
 import axios from 'axios';
 import { Image, Video } from 'cloudinary-react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
 
 const BASE_URL = '/api/v1';
 
@@ -87,8 +78,4 @@ function mapStateToProps(state) {
     };
   }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchUsers }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default connect(mapStateToProps)(User);
