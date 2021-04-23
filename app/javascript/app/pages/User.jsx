@@ -38,8 +38,11 @@ class User extends Component {
     if (this.state.user.id == this.state.user_logged.id) {
         editProfileLink = 
         <div className='flex center padding-bottom-20'>
-            <a href='/users/edit'>
+            <a className='edit-profile-link' href='/users/edit'>
                 <button className='edit-profil-btn'><strong>Edit profile</strong></button>
+            </a>
+            <a className='upload-video-link' href='/posts/new'>
+                <button className='edit-profil-btn'><strong>Upload video</strong></button>
             </a>
         </div>
     } else {
