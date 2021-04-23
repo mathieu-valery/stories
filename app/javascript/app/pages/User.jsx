@@ -41,7 +41,12 @@ class User extends Component {
     }
 
     let message
-    if (this.state.posts.length == 0 && Object.keys(this.state.user).length > 0) {
+    if (this.state.posts.length == 0 && Object.keys(this.state.user).length > 0 && this.state.user.id == this.state.user_logged.id) {
+        message = 
+        <div className='flex center padding-bottom-20'>
+            <p>(You have no video yet)</p>
+        </div>
+    } else if (this.state.posts.length == 0 && Object.keys(this.state.user).length > 0) {
         message = 
         <div className='flex center padding-bottom-20'>
             <p>({this.state.user.username} has no video yet)</p>
