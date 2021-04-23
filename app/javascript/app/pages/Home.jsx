@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchPosts, fetchComments, fetchLikes, fetchUserLogged, fetchFollows, fetchUsers } from '../actions/index';
-import PostCard from './PostCard'
-import UserCard from './UserCard'
-import BestUsersCard from './BestUsersCard'
+import PostCard from '../containers/PostCard'
+import UserCard from '../containers/UserCard'
+import BestUsersCard from '../containers/BestUsersCard'
 
 const BASE_URL = '/api/v1';
 
@@ -72,7 +72,7 @@ class Home extends Component {
       <div className="container">
         <div className="row">
           <div className='col-sm-3 your-follows'>
-            <h2>Your Top Accounts</h2>
+            <h2 className='font-size-25'><strong>Your Top Accounts</strong></h2>
             {topFiveFollowing && 
             topFiveFollowing.map(i => (
               <BestUsersCard key={i.user.id} user={i.user}/>))
@@ -84,7 +84,7 @@ class Home extends Component {
             ))}
           </div>
           <div className='col-sm-3 suggested-box'>
-            <h2>Suggested Users</h2>
+            <h2 className='font-size-25'><strong>Suggested Users</strong></h2>
             {non_followed_users && 
             non_followed_users.map(user => (
               <UserCard key={user.id} user={user}/>))

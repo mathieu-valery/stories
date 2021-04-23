@@ -9,6 +9,7 @@ class UserCard extends Component {
     render() {
         let buttonColor
         let buttonText
+        let QueryString = `/users/${this.props.user.id}`
         if (this.props.users.length > 0 && Object.keys(this.props.user).length > 0) {
             let user = this.props.users.filter(user => user.id == this.props.user.id)[0]
             if (user.received_follows.some(follow => follow.follower.id == this.props.user_logged.id && follow.is_followed)) {
@@ -22,9 +23,11 @@ class UserCard extends Component {
         }
         return (
             <div className="non-followed-user">
-                <p>{this.props.user.username}</p>
+                <a href={QueryString} className='user-link'><p>{this.props.user.username}</p></a>
                 <div className='flex'>
-                    <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
+                    <a href={QueryString}>
+                        <Image className="avatar" cloudName="dg4hemebf" publicId={this.props.user.photo_key} width="50" crop="scale" />
+                    </a>
                     <FollowButton user_id={this.props.user.id} className={buttonColor} text={buttonText}/>
                 </div>
             </div>

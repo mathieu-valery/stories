@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :comments, :dependent => :destroy
   has_many :likes, :dependent => :destroy
   has_many :liked_posts, :through => :likes, :source => :post
+  has_many :received_likes, :through => :posts, :source => :likes
   has_one_attached :photo
 
   validates :username, presence: true, uniqueness: true
