@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -17,5 +19,6 @@
 }
 
 .logo {
-  width: 100px;
+  font-family: 'Grand Hotel', cursive;
+  margin: 0;
 }
