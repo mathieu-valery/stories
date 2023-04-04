@@ -1,6 +1,9 @@
 {
   "name": "tik_tok_clone",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.12.13",
     "@fortawesome/fontawesome-free": "^5.15.3",
