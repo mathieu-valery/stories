@@ -11,27 +11,27 @@ puts("Create Users...")
 users = [
     [
         {
-        email: "anthonyyou@gmail.com",
+        email: "johnfake@gmail.com",
         password: '123456',
-        username: "Anthony",
+        username: "John",
         },
-        "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1597872878/ykktauyyzddh4mkkrzd2.jpg"
+        "https://res.cloudinary.com/dg4hemebf/image/upload/v1681136285/john_fake_r9i2vd.jpg"
     ],
     [
         {
-        email: "raphaeltoubiana@gmail.com",
+        email: "williamfake@gmail.com",
         password: '123456',
-        username: "Raphael",
+        username: "William",
         },
-        "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1598027117/lg7kzhcjqieldye3ffmg.jpg"
+        "https://res.cloudinary.com/dg4hemebf/image/upload/v1681136261/will_fake_l2afod.jpg"
     ],
     [
         {
-        email: "oceaneleroy@gmail.com",
+        email: "anniefake@gmail.com",
         password: '123456',
-        username: "Oceane",
+        username: "Annie",
         },
-        "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1597859853/hlm3ivjlz0tezolmvyvo.jpg"
+        "https://res.cloudinary.com/dg4hemebf/image/upload/v1681136293/annie_fake_vvrk2a.jpg"
     ]
 ]
 
